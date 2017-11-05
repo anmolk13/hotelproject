@@ -10,7 +10,7 @@ $result = $con->query($query);
 $num = $result->num_rows;
 
 if ($num==1){
-header("location:main.php");
+header("location:main.php"."?"."nme=".$usrnm);
 
 
 

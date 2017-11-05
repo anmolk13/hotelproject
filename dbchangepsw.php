@@ -23,14 +23,16 @@ $row = $check->num_rows;
 
 
 // 	echo"password successfully updated";
-}else{
+}else if($pass ==""){
 
-	echo"The password field cannot be empty.";
+	echo"password field is empty";
+}else{
+	echo"The username is incorrect. Try again";
+
 }
 
-// }else{
-// 	echo"The username is incorrect. Try again";
-// }
+
+
 
 
 
