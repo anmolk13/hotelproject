@@ -11,6 +11,7 @@ $roomno =$_POST['rn'];
 $room_type =$_POST['rtype'];
 $nobed =$_POST['numbed'];
 $attach =$_POST['attb'];
+$a =$_POST['ac'];
 
 
 $qu="select roomno from tbl_room where roomno='$roomno'";
@@ -24,7 +25,7 @@ if($nu!=0){
 	
 }
 
-	$quer="insert into tbl_room values(NULL,'$roomno','$room_type','$nobed','$attach')";
+	$quer="insert into tbl_room values(NULL,'$roomno','$room_type','$nobed','$attach','$a')";
 $con->query($quer);
 echo "success";
 

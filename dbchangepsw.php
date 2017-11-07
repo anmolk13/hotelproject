@@ -33,7 +33,11 @@ $row = $check->num_rows;
 
 
 
+if (isset($_POST['back'])){
 
+ header("location:index.php");
+
+}
 
 
 

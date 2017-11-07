@@ -10,13 +10,13 @@ $result = $con->query($query);
 $num = $result->num_rows;
 
 if ($num==1){
-header("location:main.php"."?"."nme=".$usrnm);
+header("location:adminpanel.php"."?"."nme=".$usrnm);
 
 
 
 }else{
 
-	header("location:login.php?error1=username or password invalid");
+	header("location:index.php?error1=username or password invalid");
 }
 
 

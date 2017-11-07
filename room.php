@@ -4,6 +4,7 @@
 		<head>
 			<title>Room Registration</title>
            	<link rel="stylesheet" href="bootstrap/bootstrap.min.css">
+            <link rel ="stylesheet" type="text/css" href = "form.css" />
 	<link rel="stylesheet" href="sidebar.css">
   <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css" rel="stylesheet">
 	    <script src="bootstrap/bootstrap.min.js"></script>
@@ -50,17 +51,19 @@
 
 		</head>
 		<body> 
-			<div style="background-color: green;">
+			<div>
 
 		<div>
 <nav class="navbar navbar-inverse navbar-fixed-top">
             <div class="container-fluid">
                 <div class="navbar-header">
+                  <?php 
+               $usr = $_GET['nme'];?>
                     <!-- Branding Image -->
                     <span class="navbar-brand" href="">
                        Logo
                     </span>
-                    <span class="navbar-brand" href="">
+                    <a class="navbar-brand" href="adminpanel.php?nme=<?php echo $usr;?>">
                       <?php 
                      		 include("connect.php");
 
@@ -72,17 +75,18 @@
 
 							echo $data['namehotel'];
 
+
              			 ?>
-                    </span>
+                    
                 </div>
                 <ul class="nav navbar-nav navbar-right">
 
                 <li class="dropdown">
-       	        <a href="#" class="glyphicon glyphicon-user"> name</a>
+       	        <a href="#" class="glyphicon glyphicon-user">  <?php echo $usr ?></a>
 
        			 <div class="dropdown-content" style="right:0;">
 				    <a href="#">Link 1</a>
-				   <a href="#">Link 2</a>
+				   <a href="logout.php">Log Out</a>
 				    
 				  </div>	
 				  </li>
@@ -96,7 +100,7 @@
               <li><a href="">New Order</a></li>
               <li><a href="">Room</a>
               <ul class="submenu">
-              <li><a href="room.php">Register Room</a></li>
+              <li><a href="room.php?nme=<?php echo $usr;?>">Register Room</a></li>
               <li><a href="">Booked Room</a></li>
               <li><a href="">Checked In</a></li>
               <li><a href="">Checked Out</a></li>
@@ -108,23 +112,31 @@
              <li><a href="gensetting.php?nme=<?php echo $usr;?>" >Settings </a></li>
              </ul>
             </nav> 
-<div class= "main col-xs-9" style=" margin-top: 10%; margin-left: 40%;  background-color: blue; padding: 3%; max-width: 300px; ">
+<div class= "main col-xs-9 form-style-8" style=" margin-top: 10%; margin-left: 40%;  max-width: 600px; ">
 
-		<formmethod="post" action="dbroom_reg.php">
+		<form method="post" action="dbroom_reg.php">
 			
 			<p>	
 			<input type="number" min=1  name="rn" autofocus placeholder="Room Number.." required/>
 			</p>
 			
 			<p>
-			<input type="text"  name="rtype" placeholder="Room Type.."   autocomplete="on" required/>
+			<input type="text"  name="rtype" placeholder="Bed Status.."   autocomplete="on" required/>
 			</p>
 					
+
+            <p>
+      <label> AC:
+      <input type = "radio" name = "ac" value="yes" checked>Yes
+      <input type = "radio" name = "ac" value = "no">No
+      </label>
+      </p>
+
+
 			<p>
-			<input type="number"  min=1 name="numbed" placeholder=" Number of beds..."   autocomplete="on" required  />
+			<input type="number"  min=1 name="numbed" placeholder=" Capacity..."   autocomplete="on" required  />
 			</p>
 			 
-
 
 			<p>
 			<label> Attached Bathroom:
