@@ -161,8 +161,8 @@ document.getElementById('btn1').style.visibility = 'hidden';
     	<h1 class="h2">Add hotel Logo and Name: <a class="btn btn-default" id = "btn1" href="logo.php"> <span class="glyphicon glyphicon-plus"></span> &nbsp; ADD HERE </a>
 
 
-    		<a class="btn btn-default"  id="btn2" href="logo.php?nme=<?php echo $usr?>&id=<?php echo $data['genid'];
-                ?>;"> <span class="glyphicon glyphicon-edit" ></span> &nbsp; UPDATE HERE </a>
+    		<a class="btn btn-default" title="click to update" id="btn2"        href="updatelogo.php?nme=<?php echo $usr?>&id=<?php echo $data['genid']?>"> 
+        <span class="glyphicon glyphicon-edit" ></span> &nbsp; UPDATE HERE </a>
 
     	</h1>
     </div>

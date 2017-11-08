@@ -1,94 +1,101 @@
-<?php
+<?php 
+error_reporting( ~E_NOTICE );
+
+require_once'connect.php';
 
 
 
 
+  if(isset($_GET['id']) && !empty($_GET['id']))
+  {
+    $id = $_GET['id'];
+    $select=('SELECT namehotel,logopic FROM tbl_general');
+    $stmt_edit = $con->query($select);
 
-if(isset($_POST['btnsave']))
-	{
-		include("connect.php");
-		
+    $rows = $stmt_edit->fetch_array();
+  }
+  else
+  {
+    header("gensetting.php");
+  }
+  
 
 
 
+if(isset($_POST['btnupdate'])){
+$hotelname = $_POST['hotel_name'];
 
-		$hotelname = $_POST['hotel_name'];
-		
-		
-		$imgFile = $_FILES['img_logo']['name'];
-		$tmp_dir = $_FILES['img_logo']['tmp_name'];
-		$imgSize = $_FILES['img_logo']['size'];
-		
-	
-		
-			$upload_dir = 'logo/'; // upload directory
-	
-			$imgExt = strtolower(pathinfo($imgFile,PATHINFO_EXTENSION)); // get image extension
-		
-			// valid image extensions
-			$valid_extensions = array('jpeg', 'jpg', 'png', 'gif'); // valid extensions
-		
-			// rename uploading image
-			$logopic = rand(100,10000).".".$imgExt;
-				
-			// allow valid image file formats
-			if(in_array($imgExt, $valid_extensions)){			
-				// Check file size '5KB'
-				if($imgSize > 200000)				{
-					$errMSG = "Sorry, your file is too large.";
+$imgFile = $_FILES['img_logo']['name'];
+$tmp_dir = $_FILES['img_logo']['tmp_name'];
+$imgSize = $_FILES['img_logo']['size'];
 
-				}
-				elseif ($imgSize==0) {
-					$errMSG = "Sorry, your file is too large.";					
-				}
-				else{
-					move_uploaded_file($tmp_dir,$upload_dir.$logopic);
-				}
-			}
-			else{
-				$errMSG = "Sorry, only JPG, JPEG, PNG & GIF files are allowed.";		
-			}
-		
-		
-		
-		// if no error occured, continue ....
-		if(!isset($errMSG))
-		{
-			$stmt = $con->prepare("INSERT INTO tbl_general(namehotel,logopic) VALUES('$hotelname', '$logopic')");
-		
-			
-			if($stmt->execute())
-			{
-				$successMSG = "new record succesfully inserted ... Please wait";
-				header("refresh:5;gensetting.php"); // redirects image view page after 5 seconds.
-			}
-			else
-			{
-				$errMSG = "error while inserting....";
-			}
-		}
-	}
-include"connect.php";
-$sql4= "select genid from tbl_general";
-		$result3 = $con->query($sql4);
-        $rowss = $result3->num_rows;
+if ($imgFile) {
 
-        $sql6 = "select namehotel from tbl_general";
-			$result6 = $con->query($sql6);
-			$data2 = $result6->fetch_array();
 
+$upload_dir = 'logo/';
+$imgExt = strtolower(pathinfo($imgFile,PATHINFO_EXTENSION)); 
+//gets image extensions nd converts file =name to all lowercase.
+$valid_extensions = array('jpeg','jpg','png');
+//the extension that are allowed to upload.
+$logopic = rand(10,10000).".".$imgExt;
+
+if (in_array($imgExt, $valid_extensions)) {
+  
+if($imgSize> 200000){
+
+$errMSG = "Sorry, your file is too large.";
+
+
+
+}elseif ($imgSize==0) {
+
+  $errMSG = "Sorry, your file is too large."; 
+} else{
+ unlink($upload_dir.$rows['logopic']);
+ move_uploaded_file($tmp_dir, $upload_dir.$logopic);
+}
+}
+else{
+  $errMSG = "Sorry, only JPG, JPEG, PNG & GIF files are allowed.";
+}
+  
+}else{
+  $logopic = $rows['logopic'];
+}
+
+
+//incase of no error, continue..
+
+if (!isset($errMSG)) {
+$updatequery = "update tbl_general set namehotel='$hotelname', logopic='$logopic'";
+
+
+
+if ($ress=$con->query($updatequery)){?>
+                <script>
+        alert('Successfully Updated ...');
+        window.location.href='gensetting.php?nme=<?php echo $usr;?>';
+        </script>
+                <?php
+ }else{?>
+                <script>
+        alert('Update Failed ...');
+        window.location.href='gensetting.php?nme=<?php echo $usr;?>';
+        </script>
+                <?php
+
+  }
+ 
+ }
+ 
+}
 
 ?>
-
-
-
-
-
 
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Logo </title>
+	<title>update Logo </title>
 		<link rel="stylesheet" href="bootstrap/bootstrap.min.css">
             <link rel ="stylesheet" type="text/css" href = "form.css" />
 	<link rel="stylesheet" href="sidebar.css">
@@ -149,7 +156,11 @@ $sql4= "select genid from tbl_general";
 <?php   
 
 			$usr = $_GET['nme'];
-
+     
+    //  $id = $_GET['id'];
+      //  $sql = ('SELECT namehotel, logopic FROM tbl_general WHERE genid='$id'');
+      // $res = $con -> query($sql);
+      // $data3 = $res->fetch_array();
 
 
 
@@ -158,6 +169,12 @@ $sql4= "select genid from tbl_general";
 
     <a class="navbar-brand" href="adminpanel.php?nme=<?php echo $usr;?>">
     <?php 
+    include "connect.php";
+
+     $sql6 = "select namehotel from tbl_general";
+      $result6 = $con->query($sql6);
+      $data2 = $result6->fetch_array();
+
        
        echo $data2['namehotel'];
 
@@ -166,7 +183,7 @@ $sql4= "select genid from tbl_general";
     </div>
     <ul class="nav navbar-nav navbar-right">
    	<li class="dropdown">
-    <a href="#" class="glyphicon glyphicon-user"> <?php echo $usr  ?></a>
+    <a href="#" class="glyphicon glyphicon-user"> <?php echo $usr ?></a>
     <div class="dropdown-content" style="right:0;">
 	<a href="#">Link 1</a>
 	<a href="logout.php">Log Out</a>
@@ -177,24 +194,38 @@ $sql4= "select genid from tbl_general";
 	</nav>
     </div>
 
-	<?php
+
+<!-- <?php
 
 
-		if(isset($errMSG)){
-				?>
-            	<div class="alert alert-danger">
-            	<span class="glyphicon glyphicon-info-sign"></span> <strong><?php echo $errMSG; ?></strong>
+    if(isset($errMSG)){
+        ?>
+              <div class="alert alert-danger">
+              <span class="glyphicon glyphicon-info-sign"></span> <strong><?php echo $errMSG; ?></strong>
                 </div>
     <?php
-		}
-	else if(isset($successMSG)){
-		?>
+    }
+  else if(isset($successMSG)){
+    ?>
         <div class="alert alert-success">
               <strong><span class="glyphicon glyphicon-info-sign"></span> <?php echo $successMSG; ?></strong>
         </div>
         <?php
-	}
-	?>   
+  }
+  ?>   --> 
+
+
+
+
+
+
+
+
+
+
+
+    
+
 
     <nav class="navigation">
   			  <ul class="mainmenu">
@@ -219,22 +250,21 @@ $sql4= "select genid from tbl_general";
 
 		<form method="post" enctype="multipart/form-data">
 	<p>
-    <input type="text" name="hotel_name" placeholder="Enter Hotel Name"  required />
+    <input type="text" name="hotel_name" placeholder="<?php echo $rows['namehotel'] ?>"  required />
     </p>
     
     <p>
     <label>Hotel Logo</label>
     <input class="input-group" type="file" name="img_logo" accept="image/*"  />
     </p>
+
+    <p><img src="logo/<?php  echo $rows['logopic'] ?>" height="150" width="150" /></p>
     
     <p>
-    <button type="submit" name="btnsave"  class="btn btn-default">
-    <span class="glyphicon glyphicon-save"></span> &nbsp; Save
+    <button type="submit" name="btnupdate" id="btn2" class="btn btn-default">
+    <span class="glyphicon glyphicon-edit"></span> &nbsp; update
     </button>
     </p>
-
-
-    
     
 		</form>
 </div>

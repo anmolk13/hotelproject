@@ -1,90 +1,3 @@
-<?php
-
-
-
-
-
-if(isset($_POST['btnsave']))
-	{
-		include("connect.php");
-		
-
-
-
-
-		$hotelname = $_POST['hotel_name'];
-		
-		
-		$imgFile = $_FILES['img_logo']['name'];
-		$tmp_dir = $_FILES['img_logo']['tmp_name'];
-		$imgSize = $_FILES['img_logo']['size'];
-		
-	
-		
-			$upload_dir = 'logo/'; // upload directory
-	
-			$imgExt = strtolower(pathinfo($imgFile,PATHINFO_EXTENSION)); // get image extension
-		
-			// valid image extensions
-			$valid_extensions = array('jpeg', 'jpg', 'png', 'gif'); // valid extensions
-		
-			// rename uploading image
-			$logopic = rand(100,10000).".".$imgExt;
-				
-			// allow valid image file formats
-			if(in_array($imgExt, $valid_extensions)){			
-				// Check file size '5KB'
-				if($imgSize > 200000)				{
-					$errMSG = "Sorry, your file is too large.";
-
-				}
-				elseif ($imgSize==0) {
-					$errMSG = "Sorry, your file is too large.";					
-				}
-				else{
-					move_uploaded_file($tmp_dir,$upload_dir.$logopic);
-				}
-			}
-			else{
-				$errMSG = "Sorry, only JPG, JPEG, PNG & GIF files are allowed.";		
-			}
-		
-		
-		
-		// if no error occured, continue ....
-		if(!isset($errMSG))
-		{
-			$stmt = $con->prepare("INSERT INTO tbl_general(namehotel,logopic) VALUES('$hotelname', '$logopic')");
-		
-			
-			if($stmt->execute())
-			{
-				$successMSG = "new record succesfully inserted ... Please wait";
-				header("refresh:5;gensetting.php"); // redirects image view page after 5 seconds.
-			}
-			else
-			{
-				$errMSG = "error while inserting....";
-			}
-		}
-	}
-include"connect.php";
-$sql4= "select genid from tbl_general";
-		$result3 = $con->query($sql4);
-        $rowss = $result3->num_rows;
-
-        $sql6 = "select namehotel from tbl_general";
-			$result6 = $con->query($sql6);
-			$data2 = $result6->fetch_array();
-
-
-?>
-
-
-
-
-
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -97,6 +10,37 @@ $sql4= "select genid from tbl_general";
 	    <script src="JQuery.js"></script>
 
 	  <script src="bootstrap/bootstrap.min.js"></script>
+
+
+
+<script>
+							
+function enable(){
+ 
+ var rows = "<?php  echo $rowss  ?>";
+
+if (rows ==1){
+
+// alert("hjj");
+//document.getElementById("h").disabled = true;
+document.getElementById('btn1').style.visibility = 'hidden';
+   document.getElementById("btn1").style.display = 'none';
+//document.getElementById('btn1').href = '#';
+}else{
+	document.getElementById('btn2').style.visibility = 'hidden';
+}
+
+
+
+
+}
+
+ 	
+
+
+
+    			
+</script>
 
 	  
 <style>
@@ -139,7 +83,7 @@ $sql4= "select genid from tbl_general";
 </style>
 </head>
 
-<body>
+<body  onload="enable()">
 <div>
 	<nav class="navbar navbar-inverse navbar-fixed-top">
     <div class="container-fluid">
@@ -227,14 +171,14 @@ $sql4= "select genid from tbl_general";
     <input class="input-group" type="file" name="img_logo" accept="image/*"  />
     </p>
     
+    
+
+
     <p>
-    <button type="submit" name="btnsave"  class="btn btn-default">
-    <span class="glyphicon glyphicon-save"></span> &nbsp; Save
+    <button type="submit" name="btnupdate" id="btn2" class="btn btn-default">
+    <span class="glyphicon glyphicon-edit"></span> &nbsp; update
     </button>
     </p>
-
-
-    
     
 		</form>
 </div>
