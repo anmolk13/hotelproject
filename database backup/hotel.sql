@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 08, 2017 at 05:21 PM
+-- Generation Time: Nov 09, 2017 at 05:28 PM
 -- Server version: 10.1.13-MariaDB
 -- PHP Version: 5.6.20
 
@@ -52,7 +52,7 @@ CREATE TABLE `tbl_general` (
 --
 
 INSERT INTO `tbl_general` (`genid`, `namehotel`, `emailhotel`, `contact`, `address`, `pobox`, `logopic`) VALUES
-(24, 'Hotel Royal Kusum', '', '', '', '', '8411.jpg');
+(32, 'Hotel Royal Kusum', '', '', '', '', '1914.jpg');
 
 -- --------------------------------------------------------
 
@@ -165,7 +165,7 @@ ALTER TABLE `tbl_fooditems`
 -- AUTO_INCREMENT for table `tbl_general`
 --
 ALTER TABLE `tbl_general`
-  MODIFY `genid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+  MODIFY `genid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
 --
 -- AUTO_INCREMENT for table `tbl_room`
 --
