@@ -18,6 +18,7 @@
 
 </body>
  <footer class="navbar navbar-default navbar-fixed-bottom" >
-  <p > Hotel  @ CopyRight</p>
+  <p > <?php echo "E-mail : ".$data['emailhotel']."  /  ";
+    echo "Contact :".$data['contact']."   /  "; echo "Address : ".$data['address']."    /   "; echo "P.O.Box : ".$data['pobox'];?>  @ CopyRight</p>
 </footer>
 </html>

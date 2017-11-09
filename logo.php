@@ -287,6 +287,6 @@ $sql4= "select genid from tbl_general";
 
 </body>
 
-<?php include "footer.html" ?>
+<?php include "footer.php" ?>
 
 </html>

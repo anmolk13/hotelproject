@@ -173,12 +173,12 @@ if ($ress=$con->query($updatequery)){?>
     <?php 
     include "connect.php";
 
-     $sql6 = "select namehotel from tbl_general";
+     $sql6 = "select * from tbl_general";
       $result6 = $con->query($sql6);
-      $data2 = $result6->fetch_array();
+      $data = $result6->fetch_array();
 
        
-       echo $data2['namehotel'];
+       echo $data['namehotel'];
 
 	?>
                     
@@ -296,6 +296,6 @@ if ($ress=$con->query($updatequery)){?>
 
 </body>
 
-<?php include "footer.html" ?>
+<?php include "footer.php" ?>
 
 </html>

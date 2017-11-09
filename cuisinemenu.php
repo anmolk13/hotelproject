@@ -66,7 +66,7 @@
                       <?php 
                      		 include("connect.php");
 
-							$sql = "select namehotel from tbl_general";
+							$sql = "select * from tbl_general";
 
 							$result = $con->query($sql);
 
@@ -214,5 +214,5 @@
 
 </body>
 
-<?php include "footer.html";?>
+<?php include "footer.php";?>
 </html>

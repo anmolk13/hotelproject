@@ -179,7 +179,7 @@ document.getElementById('btn1').style.visibility = 'hidden';
     	</h1>
     </div>
 
-	<form method="post" action="dbgensetting.php" enctype="multipart/form-data" style=" ">
+	<form method="post" action="dbgensetting.php?nme=<?php echo $usr;?>&id=<?php echo $data['genid'];?>" enctype="multipart/form-data" style=" ">
 		
     
 			
@@ -224,5 +224,5 @@ document.getElementById('btn1').style.visibility = 'hidden';
 
 
 </body>
-<?php include "footer.html";?>
+<?php include "footer.php";?>
 </html>
