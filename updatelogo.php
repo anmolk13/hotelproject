@@ -3,7 +3,7 @@ error_reporting( ~E_NOTICE );
 
 require_once'connect.php';
 
-
+$usr = $_GET['nme'];
 
 
   if(isset($_GET['id']) && !empty($_GET['id']))
@@ -73,8 +73,10 @@ $updatequery = "update tbl_general set namehotel='$hotelname', logopic='$logopic
 
 if ($ress=$con->query($updatequery)){?>
                 <script>
+                  
         alert('Successfully Updated ...');
         window.location.href='gensetting.php?nme=<?php echo $usr;?>';
+   
         </script>
                 <?php
  }else{?>
@@ -229,7 +231,15 @@ if ($ress=$con->query($updatequery)){?>
 
     <nav class="navigation">
   			  <ul class="mainmenu">
-              <li><a href="">New Order</a></li>
+              <li><a href="">Menu Items</a>
+    
+         <ul class="submenu">
+        <li><a href="cuisinemenu.php?nme=<?php echo $usr;?>">Cuisine Menu</a></li>
+        <li><a href="">Noodles Menu</a></li>
+        <li><a href="">Non-Veg Curry Menu</a></li>
+      </ul>
+      </li>
+
               <li><a href="">Room</a>
               <ul class="submenu">
               <li><a href="room.php?nme=<?php echo $usr;?>">Register Room</a></li>

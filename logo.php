@@ -3,10 +3,11 @@
 
 
 
+include("connect.php");
 
 if(isset($_POST['btnsave']))
 	{
-		include("connect.php");
+		
 		
 
 
@@ -54,21 +55,32 @@ if(isset($_POST['btnsave']))
 		// if no error occured, continue ....
 		if(!isset($errMSG))
 		{
+			$usr = $_GET['nme'];
 			$stmt = $con->prepare("INSERT INTO tbl_general(namehotel,logopic) VALUES('$hotelname', '$logopic')");
 		
 			
 			if($stmt->execute())
-			{
-				$successMSG = "new record succesfully inserted ... Please wait";
-				header("refresh:5;gensetting.php"); // redirects image view page after 5 seconds.
+			{ ?>
+
+             <script>
+             	alert('Successfully inserted...');
+             </script>
+             <?php
+				header("refresh:2;gensetting.php?nme=".$usr); // redirects image view page after 5 seconds.
 			}
 			else
-			{
-				$errMSG = "error while inserting....";
+			{?>
+
+             <script>
+             	alert('Add Unsuccessful..Try again.');
+             </script>
+             <?php
 			}
 		}
 	}
-include"connect.php";
+
+
+
 $sql4= "select genid from tbl_general";
 		$result3 = $con->query($sql4);
         $rowss = $result3->num_rows;
@@ -157,9 +169,17 @@ $sql4= "select genid from tbl_general";
 
 
     <a class="navbar-brand" href="adminpanel.php?nme=<?php echo $usr;?>">
-    <?php 
+    
+      <?php 
+
+     $sql6 = "select namehotel from tbl_general";
+      $result6 = $con->query($sql6);
+      $data2 = $result6->fetch_array();
+
        
        echo $data2['namehotel'];
+
+
 
 	?>
                     
@@ -177,7 +197,7 @@ $sql4= "select genid from tbl_general";
 	</nav>
     </div>
 
-	<?php
+	<!-- <?php
 
 
 		if(isset($errMSG)){
@@ -194,11 +214,22 @@ $sql4= "select genid from tbl_general";
         </div>
         <?php
 	}
-	?>   
+	?>    -->
 
     <nav class="navigation">
   			  <ul class="mainmenu">
-              <li><a href="">New Order</a></li>
+
+              <li><a href="">Menu Items</a>
+    
+         <ul class="submenu">
+        <li><a href="cuisinemenu.php?nme=<?php echo $usr;?>">Cuisine Menu</a></li>
+        <li><a href="">Noodles Menu</a></li>
+        <li><a href="">Non-Veg Curry Menu</a></li>
+      </ul>
+      </li>
+
+              
+
               <li><a href="">Room</a>
               <ul class="submenu">
               <li><a href="room.php?nme=<?php echo $usr;?>">Register Room</a></li>

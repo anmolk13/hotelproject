@@ -97,7 +97,19 @@
 
                <nav class="navigation">
   			  <ul class="mainmenu">
-              <li><a href="">New Order</a></li>
+            <li><a href="">Menu Items</a>
+    
+         <ul class="submenu">
+        <li><a href="cuisinemenu.php?nme=<?php echo $usr;?>">Cuisine Menu</a></li>
+        <li><a href="">Noodles Menu</a></li>
+        <li><a href="">Non-Veg Curry Menu</a></li>
+      </ul>
+      </li>
+
+
+
+
+            
               <li><a href="">Room</a>
               <ul class="submenu">
               <li><a href="room.php?nme=<?php echo $usr;?>">Register Room</a></li>
