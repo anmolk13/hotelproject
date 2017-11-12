@@ -8,7 +8,9 @@ include("connect.php");
 
 if (isset($_POST['btn_addroom'])){
 $roomno =$_POST['rn'];
-$room_type =$_POST['rtype'];
+$room_type =$_POST['select_roomtype'];
+$bed_type =$_POST['select_bedtype'];
+$hotel_fac =$_POST['select_hotelfacilities'];
 $nobed =$_POST['numbed'];
 $attach =$_POST['attb'];
 $a =$_POST['ac'];

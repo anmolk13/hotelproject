@@ -103,17 +103,21 @@ document.getElementById('btn1').style.visibility = 'hidden';
                 <div class="navbar-header">
                     <!-- Branding Image -->
                     <span class="navbar-brand" href="">
-                       Logo
+                      
+                       <?php
+
+                       $sql = "select * from tbl_general";
+
+              $result = $con->query($sql);
+
+              $data = $result->fetch_array();
+              ?>
+              <img src="logo/<?php echo $data['logopic']; ?>" class="" width="50%" height="35px"  />
+
                     </span>
                     <a class="navbar-brand" href="adminpanel.php?nme=<?php echo $usr;?>">
+                      
                       <?php 
-                     		
-
-							$sql = "select * from tbl_general";
-
-							$result = $con->query($sql);
-
-							$data = $result->fetch_array();
 
 							echo $data['namehotel'];
               
@@ -159,7 +163,7 @@ document.getElementById('btn1').style.visibility = 'hidden';
               <li><a href="">Booked Room</a></li>
               <li><a href="">Checked In</a></li>
               <li><a href="">Checked Out</a></li>
-              <li><a href="">Room Details</a></li>
+              <li><a href="hfacilities.php?nme=<?php echo $usr;?>">Hotel Facilities</a></li>
              </ul>
              </li>
              <li><a href="">View orders</a></li>

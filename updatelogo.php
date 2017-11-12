@@ -153,12 +153,18 @@ if ($ress=$con->query($updatequery)){?>
 	<nav class="navbar navbar-inverse navbar-fixed-top">
     <div class="container-fluid">
     <div class="navbar-header">
-    <span class="navbar-brand" href="">Logo</span>
-
 <?php   
 
-			$usr = $_GET['nme'];
+      $usr = $_GET['nme'];
      
+
+                                         include("connect.php");
+
+              $sql = "select * from tbl_general";
+
+              $result = $con->query($sql);
+
+              $data = $result->fetch_array();
     //  $id = $_GET['id'];
       //  $sql = ('SELECT namehotel, logopic FROM tbl_general WHERE genid='$id'');
       // $res = $con -> query($sql);
@@ -167,6 +173,10 @@ if ($ress=$con->query($updatequery)){?>
 
 
  ?>
+    <span class="navbar-brand" href=""> <img src="logo/<?php echo $data['logopic']; ?>" class="" width="50%" height="35px"  />
+</span>
+
+
 
 
     <a class="navbar-brand" href="adminpanel.php?nme=<?php echo $usr;?>">
@@ -246,7 +256,7 @@ if ($ress=$con->query($updatequery)){?>
               <li><a href="">Booked Room</a></li>
               <li><a href="">Checked In</a></li>
               <li><a href="">Checked Out</a></li>
-              <li><a href="">Room Details</a></li>
+              <li><a href="hfacilities.php?nme=<?php echo $usr;?>">Hotel Facilities</a></li>
              </ul>
              </li>
              <li><a href="">View orders</a></li>
@@ -260,7 +270,7 @@ if ($ress=$con->query($updatequery)){?>
 
 		<form method="post" enctype="multipart/form-data">
 	<p>
-    <input type="text" name="hotel_name" placeholder="<?php echo $rows['namehotel'] ?>"  required />
+    <input type="text" name="hotel_name" value="<?php echo $rows['namehotel'] ?>"  required />
     </p>
     
     <p>

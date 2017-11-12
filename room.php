@@ -58,20 +58,22 @@
             <div class="container-fluid">
                 <div class="navbar-header">
                   <?php 
-               $usr = $_GET['nme'];?>
+               $usr = $_GET['nme'];
+                         include("connect.php");
+
+              $sql = "select * from tbl_general";
+
+              $result = $con->query($sql);
+
+              $data = $result->fetch_array();
+               ?>
                     <!-- Branding Image -->
                     <span class="navbar-brand" href="">
-                       Logo
+                       <img src="logo/<?php echo $data['logopic']; ?>" class="" width="50%" height="35px"  />
                     </span>
                     <a class="navbar-brand" href="adminpanel.php?nme=<?php echo $usr;?>">
                       <?php 
-                     		 include("connect.php");
 
-							$sql = "select * from tbl_general";
-
-							$result = $con->query($sql);
-
-							$data = $result->fetch_array();
 
 							echo $data['namehotel'];
 
@@ -116,7 +118,7 @@
               <li><a href="">Booked Room</a></li>
               <li><a href="">Checked In</a></li>
               <li><a href="">Checked Out</a></li>
-              <li><a href="">Room Details</a></li>
+              <li><a href="hfacilities.php?nme=<?php echo $usr;?>">Hotel Facilities</a></li>
              </ul>
              </li>
              <li><a href="">View orders</a></li>
@@ -124,13 +126,70 @@
              <li><a href="gensetting.php?nme=<?php echo $usr;?>" >Settings </a></li>
              </ul>
             </nav> 
-<div class= "main col-xs-9 form-style-8" style=" margin-top: 10%; margin-left: 40%;  max-width: 600px; ">
+<div class= "main col-xs-9 form-style-8" style=" margin-top: 8%; margin-left: 40%;  max-width: 800px; ">
 
 		<form method="post" action="dbroom_reg.php">
 			
 			<p>	
 			<input type="number" min=1  name="rn" autofocus placeholder="Room Number.." required/>
+</p>
+<p>
+<?php
+      $sql="SELECT * FROM tbl_add_roomtype";
+
+      $res=$con->query($sql);
+
+$nu=$res->num_rows;
+
+$select= '<select name="select_roomtype" required>';
+$select.='<option value="" disabled selected style="display: none;">'.'Choose Room Type...'.'</option>';
+while($data1 = $res->fetch_array()){
+      $select.='<option value="'.$data1['roomtypeid'].'">'.$data1['roomtype'].'</option>';
+  }
+
+$select.='</select>';
+echo $select;
+?>
 			</p>
+
+
+<p>
+<?php
+      $sql="SELECT * FROM tbl_add_bedtype";
+
+      $res=$con->query($sql);
+
+$nu=$res->num_rows;
+
+$select= '<select name="select_bedtype" required>';
+$select.='<option value="" disabled selected style="display: none;">'.'Choose Bed Type...'.'</option>';
+while($data1 = $res->fetch_array()){
+      $select.='<option value="'.$data1['bedtypeid'].'">'.$data1['bedtype'].'</option>';
+  }
+
+$select.='</select>';
+echo $select;
+?>
+      </p>
+
+<p>
+<?php
+      $sql="SELECT * FROM tbl_hotel_facilities";
+
+      $res=$con->query($sql);
+
+$nu=$res->num_rows;
+
+$select= '<select name="select_hotelfacilities" required>';
+$select.='<option value="" disabled selected style="display: none;">'.'Choose Hotel Facilities...'.'</option>';
+while($data1 = $res->fetch_array()){
+      $select.='<option value="'.$data1['hotelfac_id'].'">'.$data1['facilities'].'</option>';
+  }
+
+$select.='</select>';
+echo $select;
+?>
+      </p>
 			
 			<p>
 			<input type="text"  name="rtype" placeholder="Bed Status.."   autocomplete="on" required/>
@@ -146,7 +205,7 @@
 
 
 			<p>
-			<input type="number"  min=1 name="numbed" placeholder=" Capacity..."   autocomplete="on" required  />
+			<input type="number"  min=1 name="numbed" placeholder=" Capacity of Beds..."   autocomplete="on" required  />
 			</p>
 			 
 

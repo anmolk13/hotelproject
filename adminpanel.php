@@ -55,20 +55,23 @@
                 <div class="navbar-header">
                   <?php  
                $usr = $_GET['nme'];
+                                         include("connect.php");
+
+              $sql = "select * from tbl_general";
+
+              $result = $con->query($sql);
+
+              $data = $result->fetch_array();
+
                ?>
                     <!-- Branding Image -->
-                    <span class="navbar-brand" href="">
-                       Logo
+                    <span class="navbar-brand" href="" >
+                       <img src="logo/<?php echo $data['logopic']; ?>" style="margin-bottom: 20px;" class="" width="50%" height="35px"  />
+
                     </span>
                     <span class="navbar-brand" href="admin.php?nme=<?php echo $usr;?>">
                       <?php 
-                     		 include("connect.php");
 
-							$sql = "select * from tbl_general";
-
-							$result = $con->query($sql);
-
-							$data = $result->fetch_array();
 
 							echo $data['namehotel'];
 
@@ -113,7 +116,7 @@
         <li><a href="">Booked Room</a></li>
         <li><a href="">Checked In</a></li>
         <li><a href="">Checked Out</a></li>
-        <li><a href="">Room Details</a></li>
+        <li><a href="hfacilities.php?nme=<?php echo $usr;?>">Hotel Facilities</a></li>
       </ul>
       </li>
     <li><a href="">View orders</a></li>

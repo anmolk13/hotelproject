@@ -3,9 +3,9 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 09, 2017 at 05:28 PM
--- Server version: 10.1.13-MariaDB
--- PHP Version: 5.6.20
+-- Generation Time: Nov 12, 2017 at 07:25 AM
+-- Server version: 10.1.16-MariaDB
+-- PHP Version: 7.0.9
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -23,12 +23,53 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tbl_fooditems`
+-- Table structure for table `tbl_add_bedtype`
 --
 
-CREATE TABLE `tbl_fooditems` (
-  `foodid` int(11) NOT NULL,
-  `name` varchar(225) NOT NULL
+CREATE TABLE `tbl_add_bedtype` (
+  `bedtypeid` int(11) NOT NULL,
+  `bedtype` varchar(150) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `tbl_add_bedtype`
+--
+
+INSERT INTO `tbl_add_bedtype` (`bedtypeid`, `bedtype`) VALUES
+(2, 'deluxe'),
+(3, 'example1');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tbl_add_roomtype`
+--
+
+CREATE TABLE `tbl_add_roomtype` (
+  `roomtypeid` int(11) NOT NULL,
+  `roomtype` varchar(150) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `tbl_add_roomtype`
+--
+
+INSERT INTO `tbl_add_roomtype` (`roomtypeid`, `roomtype`) VALUES
+(1, 'standard'),
+(2, 'example');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tbl_foodmenu`
+--
+
+CREATE TABLE `tbl_foodmenu` (
+  `menuid` int(11) NOT NULL,
+  `item_category` varchar(225) NOT NULL,
+  `item_name` varchar(225) NOT NULL,
+  `fprice` float NOT NULL,
+  `hprice` float NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -52,7 +93,26 @@ CREATE TABLE `tbl_general` (
 --
 
 INSERT INTO `tbl_general` (`genid`, `namehotel`, `emailhotel`, `contact`, `address`, `pobox`, `logopic`) VALUES
-(32, 'Hotel Royal Kusum', '', '', '', '', '1914.jpg');
+(32, 'Hotel Royal Kusum', 'hotel@gmail.com', '98435678980', 'ktm', 'nothing', '3969.jpg');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tbl_hotel_facilities`
+--
+
+CREATE TABLE `tbl_hotel_facilities` (
+  `hotelfac_id` int(11) NOT NULL,
+  `facilities` varchar(150) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `tbl_hotel_facilities`
+--
+
+INSERT INTO `tbl_hotel_facilities` (`hotelfac_id`, `facilities`) VALUES
+(5, 'wifi'),
+(6, 'TV');
 
 -- --------------------------------------------------------
 
@@ -129,16 +189,34 @@ INSERT INTO `tbl_user_registration` (`userid`, `fname`, `lname`, `userpic`, `add
 --
 
 --
--- Indexes for table `tbl_fooditems`
+-- Indexes for table `tbl_add_bedtype`
 --
-ALTER TABLE `tbl_fooditems`
-  ADD PRIMARY KEY (`foodid`);
+ALTER TABLE `tbl_add_bedtype`
+  ADD PRIMARY KEY (`bedtypeid`);
+
+--
+-- Indexes for table `tbl_add_roomtype`
+--
+ALTER TABLE `tbl_add_roomtype`
+  ADD PRIMARY KEY (`roomtypeid`);
+
+--
+-- Indexes for table `tbl_foodmenu`
+--
+ALTER TABLE `tbl_foodmenu`
+  ADD PRIMARY KEY (`menuid`);
 
 --
 -- Indexes for table `tbl_general`
 --
 ALTER TABLE `tbl_general`
   ADD PRIMARY KEY (`genid`);
+
+--
+-- Indexes for table `tbl_hotel_facilities`
+--
+ALTER TABLE `tbl_hotel_facilities`
+  ADD PRIMARY KEY (`hotelfac_id`);
 
 --
 -- Indexes for table `tbl_room`
@@ -157,15 +235,30 @@ ALTER TABLE `tbl_user_registration`
 --
 
 --
--- AUTO_INCREMENT for table `tbl_fooditems`
+-- AUTO_INCREMENT for table `tbl_add_bedtype`
 --
-ALTER TABLE `tbl_fooditems`
-  MODIFY `foodid` int(11) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `tbl_add_bedtype`
+  MODIFY `bedtypeid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+--
+-- AUTO_INCREMENT for table `tbl_add_roomtype`
+--
+ALTER TABLE `tbl_add_roomtype`
+  MODIFY `roomtypeid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+--
+-- AUTO_INCREMENT for table `tbl_foodmenu`
+--
+ALTER TABLE `tbl_foodmenu`
+  MODIFY `menuid` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `tbl_general`
 --
 ALTER TABLE `tbl_general`
   MODIFY `genid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
+--
+-- AUTO_INCREMENT for table `tbl_hotel_facilities`
+--
+ALTER TABLE `tbl_hotel_facilities`
+  MODIFY `hotelfac_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 --
 -- AUTO_INCREMENT for table `tbl_room`
 --

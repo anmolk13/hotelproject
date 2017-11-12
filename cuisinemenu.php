@@ -57,20 +57,27 @@
             <div class="container-fluid">
                 <div class="navbar-header">
                   <?php 
-               $usr = $_GET['nme'];?>
-                    <!-- Branding Image -->
-                    <span class="navbar-brand" href="">
-                       Logo
-                    </span>
-                    <a class="navbar-brand" href="adminpanel.php?nme=<?php echo $usr;?>">
-                      <?php 
-                     		 include("connect.php");
+               $usr = $_GET['nme'];
+
+                                    		 include("connect.php");
 
 							$sql = "select * from tbl_general";
 
 							$result = $con->query($sql);
 
 							$data = $result->fetch_array();
+							
+               ?>
+
+
+                    <!-- Branding Image -->
+                    <span class="navbar-brand" href="">
+                        <img src="logo/<?php echo $data['logopic']; ?>" class="" width="50%" height="35px"  />
+
+                    </span>
+                    <a class="navbar-brand" href="adminpanel.php?nme=<?php echo $usr;?>">
+                      <?php 
+
 
 							echo $data['namehotel'];
 
@@ -117,7 +124,7 @@
               <li><a href="">Booked Room</a></li>
               <li><a href="">Checked In</a></li>
               <li><a href="">Checked Out</a></li>
-              <li><a href="">Room Details</a></li>
+              <li><a href="hfacilities.php?nme=<?php echo $usr;?>">Hotel Facilities</a></li>
              </ul>
              </li>
              <li><a href="">View orders</a></li>
@@ -127,7 +134,7 @@
             </nav> 
 
 <div class="main col-xs-9 form-style-8" style=" margin-top: 4%; margin-left: 17%;  max-width: 900px; ">
-<form>
+<form action="" method="post">
 
 	<hr>
 <h2 style="background-color: #FFF8DC;"> <span class="glyphicon glyphicon-cutlery"></span> INSERT MENU INFORMATION</h2>
