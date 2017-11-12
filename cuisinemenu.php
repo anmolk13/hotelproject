@@ -124,7 +124,7 @@
               <li><a href="">Booked Room</a></li>
               <li><a href="">Checked In</a></li>
               <li><a href="">Checked Out</a></li>
-              <li><a href="hfacilities.php?nme=<?php echo $usr;?>">Hotel Facilities</a></li>
+              <li><a href="">Room Details</a></li>
              </ul>
              </li>
              <li><a href="">View orders</a></li>
@@ -134,76 +134,46 @@
             </nav> 
 
 <div class="main col-xs-9 form-style-8" style=" margin-top: 4%; margin-left: 17%;  max-width: 900px; ">
-<form action="" method="post">
+<form>
 
 	<hr>
 <h2 style="background-color: #FFF8DC;"> <span class="glyphicon glyphicon-cutlery"></span> INSERT MENU INFORMATION</h2>
 	<hr>
 			
+			<hr/>
+		    <div style="">	
 			<p>
-			
-			<h2 style="background-color: #FFF8DC;" > Insert Nepali Cusine..</h2>
+			<input type="text" style=""    name="mainfood" placeholder="Category Eg. Nepali, Indian"   autocomplete="on" required  />
 			</p>
-					
-			<p>
-			<input type="text" style="border-left: 1px solid #ddd; border-top: 1px solid #ddd; border-right: 1px solid #ddd; margin-bottom: 0px;"    name="mainfood" placeholder="food item EG. Veg khana set.."   autocomplete="on" required  />
-			
-			<textarea placeholder="Description EG.daal,Rice..etc" style=" resize:none; border-left: 1px solid #ddd; border-right: 1px solid #ddd; margin-bottom: 0px; height:90px;" name="desc" required></textarea>
-			
+
+  			<p>
+			<input type="text" placeholder="food item EG. Veg khana set.." name="desc" required />
+			</p>
 			
 
-			
-			<input type="text" style="border-left: 1px solid #ddd; border-right: 1px solid #ddd;" class="" name="price" placeholder="Price.. Eg. NRS.250"   autocomplete="on" required  />
+			<p>
+			<input type="text" name="fprice" placeholder="Full Price.."   autocomplete="on" required  />
+			</p>
+
+  			<p>
+			<input type="text" name="hprice" placeholder="Half Price.."   autocomplete="on" required  />
 			</p>
 
 			<p>
 			<input type="submit" value="Save"  class="" name="btnnepali">
 			</p>
 
-			<hr/>
-
-				<p>
-			
-			<h2 style="background-color: #FFF8DC;" > Insert Indian Cusine..</h2>
-						</p>
-					
-			<p>
-			<input type="text" style="border-left: 1px solid #ddd; border-top: 1px solid #ddd; border-right: 1px solid #ddd; margin-bottom: 0px;"    name="mainfood" placeholder="food item EG. Veg. Thali Set.."   autocomplete="on" required  />
-			
-			<textarea placeholder="Description EG.Chapati,Mixed Veg..etc" style=" resize:none; border-left: 1px solid #ddd; border-right: 1px solid #ddd; margin-bottom: 0px; height:90px;" name="desc" required></textarea>
-			
-			
-
-			
-			<input type="text" style="border-left: 1px solid #ddd; border-right: 1px solid #ddd;" class="" name="price" placeholder="Price.. Eg. NRS.250"   autocomplete="on" required  />
-			</p>
-
-			<p>
-			<input type="submit" value="Save"  class="" name="btnindian">
-			</p>
+			</div>
 
 			<hr/>
+             
+             <p>
+			 <h2 style="background-color: #FFF8DC;" > </h2>
+			 </p>
 
-		    <p>
-		  <h2 style="background-color: #FFF8DC;" > Insert Chinese Cusine..</h2>
-			</p>
-					
-			<p>
-			<input type="text" style="border-left: 1px solid #ddd; border-top: 1px solid #ddd; border-right: 1px solid #ddd; margin-bottom: 0px;"    name="mainfood" placeholder="food item EG. Veg. Soup.."   autocomplete="on" required  />
-			
-			<!-- <textarea placeholder="Description EG.daal,Rice..etc" style=" resize:none; border-left: 1px solid #ddd; border-right: 1px solid #ddd; margin-bottom: 0px; height:90px;" name="desc" required></textarea> -->
-			
-			
 
-			
-			<input type="text" style="border-left: 1px solid #ddd; border-right: 1px solid #ddd;" class="" name="price" placeholder="Price.. Eg. NRS.250"   autocomplete="on" required  />
-			</p>
-
-			
-
-			<p style="margin-bottom: 10%;">
-			<input type="submit" value="Save"  class="" name="btnchinese">
-			</p>
+				
+		
 
 </form>
 </div>
