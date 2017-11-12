@@ -89,26 +89,30 @@ $con->query($r);
 </style>
 
 
+
+
 </head>
 <body>
 <nav class="navbar navbar-inverse navbar-fixed-top">
             <div class="container-fluid">
                 <div class="navbar-header">
                   <?php 
+                                $sql = "select * from tbl_general";
+
+              $result = $con->query($sql);
+
+              $data = $result->fetch_array();
                $usr = $_GET['nme'];?>
                     <!-- Branding Image -->
                     <span class="navbar-brand" href="">
-                       Logo
+                       <img src="logo/<?php echo $data['logopic']; ?>" style="margin-bottom: 20px;" class="" width="50%" height="35px"  />
+
                     </span>
                     <a class="navbar-brand" href="adminpanel.php?nme=<?php echo $usr;?>">
                       <?php 
 
 
-							$sql = "select * from tbl_general";
 
-							$result = $con->query($sql);
-
-							$data = $result->fetch_array();
 
 							echo $data['namehotel'];
 
@@ -140,13 +144,8 @@ $con->query($r);
 
                <nav class="navigation">
   			  <ul class="mainmenu">
- 			  <li><a href="">Menu Items</a>
+ 			  <li><a href="cuisinemenu.php?nme=<?php echo $usr;?>">Edit Menu Items</a>
     
-         <ul class="submenu">
-        <li><a href="cuisinemenu.php?nme=<?php echo $usr;?>">Cuisine Menu</a></li>
-        <li><a href="">Noodles Menu</a></li>
-        <li><a href="">Non-Veg Curry Menu</a></li>
-      </ul>
       </li>
 
 
@@ -178,6 +177,17 @@ $con->query($r);
 
 	
 <h2 style="background-color: #FFF8DC;">  Insert Hotel Facilities</h2>
+
+ <?php 
+if (isset($_GET['msg1'])) {
+?><div style="font-size: 20px; border:1px solid black; max-width: 250px;" >
+  <?php echo "<span class='glyphicon glyphicon-ok'> </span>"." ".$_GET['msg1'] ;
+?>  </div><?php
+}
+
+
+ ?> 
+
 <div>
 <?php
 
@@ -206,12 +216,14 @@ $n++;
 	<hr>
 							
 			<p>
-			<input type="text" name="facility" placeholder="Eg: wifi, tv etc"   autocomplete="on" required  />
+			<input type="text"  name="facility" placeholder="Eg: wifi, tv etc"   autocomplete="on" required  />
 		</p>
 			
 						<p>
 			<input type="submit" value="Save"  class="" name="btn_facili">
 			</p>
+
+			
 
 
 </form>
@@ -225,6 +237,18 @@ $n++;
 
 	
 <h2 style="background-color: #FFF8DC;">  Add Bed Types</h2>
+
+ <?php 
+if (isset($_GET['msg2'])) {
+?><div style="font-size: 20px; border:1px solid black; max-width: 250px;" >
+  <?php echo "<span class='glyphicon glyphicon-ok'> </span>"." ".$_GET['msg2'] ;
+?>  </div><?php
+}
+
+
+ ?> 
+
+
 <div>
 <?php
 
@@ -255,11 +279,15 @@ $n++;
 					
 			<p>
 			<input type="text" name="btype" placeholder="Eg: deluxe etc"   autocomplete="on" required  />
-		</p>
+		    </p>
 			
-						<p>
+			<p>
 			<input type="submit" value="Save"  class="" name="btn_btype">
 			</p>
+
+
+
+
 
 
 </form>
@@ -273,6 +301,17 @@ $n++;
 
 	
 <h2 style="background-color: #FFF8DC;">  Add Room Types</h2>
+
+ <?php 
+if (isset($_GET['msg3'])) {
+?><div style="font-size: 20px; border:1px solid black; max-width: 250px;" >
+  <?php echo "<span class='glyphicon glyphicon-ok'> </span>"." ".$_GET['msg3']."<br>" ;
+?>  </div><?php
+}
+
+
+ ?> 
+
 
 <div>
 <?php
@@ -306,6 +345,12 @@ $n++;
 						<p>
 			<input type="submit" value="Save"  class="" name="btn_rtype">
 			</p>
+
+
+		
+
+
+
 
 
 </form>

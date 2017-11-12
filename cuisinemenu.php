@@ -103,13 +103,9 @@
 
                <nav class="navigation">
   			  <ul class="mainmenu">
- 			  <li><a href="">Menu Items</a>
+ 			  <li><a href="cuisinemenu.php?nme=<?php echo $usr;?>">Edit Menu Items</a>
     
-         <ul class="submenu">
-        <li><a href="cuisinemenu.php?nme=<?php echo $usr;?>">Cuisine Menu</a></li>
-        <li><a href="">Noodles Menu</a></li>
-        <li><a href="">Non-Veg Curry Menu</a></li>
-      </ul>
+  
       </li>
 
 
@@ -124,7 +120,7 @@
               <li><a href="">Booked Room</a></li>
               <li><a href="">Checked In</a></li>
               <li><a href="">Checked Out</a></li>
-              <li><a href="">Room Details</a></li>
+              <li><a href="hfacilities.php?nme=<?php echo $usr;?>">Hotel Facilities</a></li>
              </ul>
              </li>
              <li><a href="">View orders</a></li>
@@ -133,21 +129,35 @@
              </ul>
             </nav> 
 
-<div class="main col-xs-9 form-style-8" style=" margin-top: 4%; margin-left: 17%;  max-width: 900px; ">
-<form>
+<div class="main col-xs-9 form-style-8" style=" margin-top: 7%; margin-left: 17%;  max-width: 900px; ">
+
+<form action="dbcuisinemenu.php?nme=<?php echo $usr;?>" method="post" >
+
+  
+
+	
+<h2 style="background-color: #FFF8DC;"> <span class="glyphicon glyphicon-cutlery"></span> INSERT MENU INFORMATION</h2>
+
+ <?php 
+if (isset($_GET['msg1'])) {
+?><div style="font-size: 20px; border:1px solid black; max-width: 250px;" >
+  <?php echo "<span class='glyphicon glyphicon-ok'> </span>"." ".$_GET['msg1'] ;
+?>  </div><?php
+}
+
+
+ ?> 
 
 	<hr>
-<h2 style="background-color: #FFF8DC;"> <span class="glyphicon glyphicon-cutlery"></span> INSERT MENU INFORMATION</h2>
-	<hr>
 			
-			<hr/>
+		
 		    <div style="">	
 			<p>
-			<input type="text" style=""    name="mainfood" placeholder="Category Eg. Nepali, Indian"   autocomplete="on" required  />
+			<input type="text" name="mainfood" placeholder="Category Eg. Nepali, Indian"   autocomplete="on" required  />
 			</p>
 
   			<p>
-			<input type="text" placeholder="food item EG. Veg khana set.." name="desc" required />
+			<input type="text" placeholder="food item EG. Veg khana set.." name="fitem" required />
 			</p>
 			
 
@@ -160,16 +170,14 @@
 			</p>
 
 			<p>
-			<input type="submit" value="Save"  class="" name="btnnepali">
+			<input type="submit" value="Insert"  class="" name="btn_save" >
 			</p>
+
+
 
 			</div>
 
-			<hr/>
-             
-             <p>
-			 <h2 style="background-color: #FFF8DC;" > </h2>
-			 </p>
+			
 
 
 				

@@ -35,15 +35,15 @@ if ($imgFile) {
 $upload_dir = 'logo/';
 $imgExt = strtolower(pathinfo($imgFile,PATHINFO_EXTENSION)); 
 //gets image extensions nd converts file =name to all lowercase.
-$valid_extensions = array('jpeg','jpg','png');
+$valid_extensions = array('jpeg','jpg','png','gif');
 //the extension that are allowed to upload.
 $logopic = rand(10,10000).".".$imgExt;
 
 if (in_array($imgExt, $valid_extensions)) {
   
-if($imgSize> 200000){
+        if($imgSize> 200000){
 
-$errMSG = "Sorry, your file is too large.";
+          $errMSG = "Sorry, your file is too large.";
 
 
 
@@ -60,6 +60,7 @@ else{
 }
   
 }else{
+
   $logopic = $rows['logopic'];
 }
 
@@ -241,13 +242,9 @@ if ($ress=$con->query($updatequery)){?>
 
     <nav class="navigation">
   			  <ul class="mainmenu">
-              <li><a href="">Menu Items</a>
+              <li><a href="cuisinemenu.php?nme=<?php echo $usr;?>">Edit Menu Items</a>
     
-         <ul class="submenu">
-        <li><a href="cuisinemenu.php?nme=<?php echo $usr;?>">Cuisine Menu</a></li>
-        <li><a href="">Noodles Menu</a></li>
-        <li><a href="">Non-Veg Curry Menu</a></li>
-      </ul>
+        
       </li>
 
               <li><a href="">Room</a>
@@ -256,7 +253,7 @@ if ($ress=$con->query($updatequery)){?>
               <li><a href="">Booked Room</a></li>
               <li><a href="">Checked In</a></li>
               <li><a href="">Checked Out</a></li>
-              <li><a href="hfacilities.php?nme=<?php echo $usr;?>">Hotel Facilities</a></li>
+              <li><a href="">Room Details</a></li>
              </ul>
              </li>
              <li><a href="">View orders</a></li>

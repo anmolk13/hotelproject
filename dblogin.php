@@ -16,7 +16,7 @@ header("location:adminpanel.php"."?"."nme=".$usrnm);
 
 }else{
 
-	header("location:index.php?error1=username or password invalid");
+	header("location:index.php?error1=Username or password invalid");
 }
 
 

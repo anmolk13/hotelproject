@@ -7,10 +7,10 @@
 	  <script src="bootstrap/bootstrap.min.js"></script>
 <script type="text/javascript" src="JQuery.js"></script>
             <link rel ="stylesheet" type="text/css" href = "form.css" />
-	<link rel="stylesheet" href="sidebar.css">
+	       <link rel="stylesheet" href="sidebar.css">
 
 
-             <style>
+      <style>
 	
 
 
@@ -70,14 +70,14 @@ function enable(){
  var rows = "<?php  echo $row  ?>";
 
 if (rows ==1){
-
-// alert("hjj");
-//document.getElementById("h").disabled = true;
 document.getElementById('btn1').style.visibility = 'hidden';
-   document.getElementById("btn1").style.display = 'none';
-//document.getElementById('btn1').href = '#';
+document.getElementById("btn1").style.display = 'none';
+
 }else{
 	document.getElementById('btn2').style.visibility = 'hidden';
+  document.getElementById('formone').style.visibility = 'hidden';
+  document.getElementById("formone").style.display = 'none';
+
 }
 
 
@@ -144,13 +144,8 @@ document.getElementById('btn1').style.visibility = 'hidden';
 
                <nav class="navigation">
   			  <ul class="mainmenu">
-              <li><a href="">Menu Items</a>
-    
-         <ul class="submenu">
-        <li><a href="cuisinemenu.php?nme=<?php echo $usr;?>">Cuisine Menu</a></li>
-        <li><a href="">Noodles Menu</a></li>
-        <li><a href="">Non-Veg Curry Menu</a></li>
-      </ul>
+              <li><a href="cuisinemenu.php?nme=<?php echo $usr;?>">Edit Menu Items</a>
+
       </li>
 
 
@@ -174,16 +169,35 @@ document.getElementById('btn1').style.visibility = 'hidden';
 	
 	<div class="main col-xs-9 form-style-8"  style=" margin-top: 5%; margin-left: 30%;  max-width: 700px;">
 			<div class="page-header" >
-    	<h1 class="h2">Add hotel Logo and Name: <a class="btn btn-default" id = "btn1" href="logo.php?nme=<?php echo $usr?>"> <span class="glyphicon glyphicon-plus"></span> &nbsp; ADD HERE </a>
+
+
+      
+ <?php 
+if (isset($_GET['msg1'])) {
+?><div style="font-size: 20px; border:1px solid black; max-width: 250px;" >
+  <?php echo "<span class='glyphicon glyphicon-ok'> </span>"." ".$_GET['msg1'] ;
+?>  </div><?php
+}
+
+
+ ?> 
+
+
+
+
+
+    	<h1 class="h2">Add/Update hotel Logo and Name:
+
+       <a class="btn btn-default" id = "btn1" href="logo.php?nme=<?php echo $usr?>"> <span class="glyphicon glyphicon-plus"></span> &nbsp; ADD HERE </a>
 
 
     		<a class="btn btn-default" title="click to update" id="btn2"        href="updatelogo.php?nme=<?php echo $usr?>&id=<?php echo $data['genid']?>"> 
         <span class="glyphicon glyphicon-edit" ></span> &nbsp; UPDATE HERE </a>
-
-    	</h1>
+</h1>
+    	
     </div>
 
-	<form method="post" action="dbgensetting.php?nme=<?php echo $usr;?>&id=<?php echo $data['genid'];?>" enctype="multipart/form-data" style=" ">
+	<form method="post" id="formone" action="dbgensetting.php?nme=<?php echo $usr;?>&id=<?php echo $data['genid'];?>" enctype="multipart/form-data" style=" ">
 		
     
 			
@@ -200,15 +214,23 @@ document.getElementById('btn1').style.visibility = 'hidden';
 			<input type="text"  class="" name="add" placeholder="Address..."   autocomplete="on" required  />
 			</p>
 
+
+      <p>
+      <input type="text"  class="" name="web" placeholder="Website.."   autocomplete="on" required  />
+      </p>
+
 			<p>
-			<input type="text"  class="" name="pob" placeholder="P.O.Box ..."   autocomplete="on" required  />
+			<input type="text"  class="" name="pan" placeholder="PAN Number. .."   autocomplete="on" required  />
 			</p>
 
-			
+      <p>
+      <input type="text"  class="" name="vat" placeholder="VAT Number. .."   autocomplete="on" required  />
+      </p>
 
 			<p>
-			<input type="submit" value="Confirm"  class="" name="btn_gensetting">
+			<input type="submit" value="Confirm"  class="" name="btn_gensetting" style="margin-bottom: 10%;">
 			</p>
+     
 
 </form>
 </div>

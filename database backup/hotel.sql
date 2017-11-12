@@ -3,9 +3,9 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 12, 2017 at 07:25 AM
--- Server version: 10.1.16-MariaDB
--- PHP Version: 7.0.9
+-- Generation Time: Nov 12, 2017 at 10:55 AM
+-- Server version: 10.1.13-MariaDB
+-- PHP Version: 5.6.20
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -37,7 +37,8 @@ CREATE TABLE `tbl_add_bedtype` (
 
 INSERT INTO `tbl_add_bedtype` (`bedtypeid`, `bedtype`) VALUES
 (2, 'deluxe'),
-(3, 'example1');
+(3, 'example1'),
+(4, 'example2');
 
 -- --------------------------------------------------------
 
@@ -83,8 +84,10 @@ CREATE TABLE `tbl_general` (
   `namehotel` varchar(200) NOT NULL,
   `emailhotel` varchar(150) NOT NULL,
   `contact` varchar(100) NOT NULL,
+  `site` varchar(155) NOT NULL,
   `address` varchar(150) NOT NULL,
-  `pobox` varchar(150) NOT NULL,
+  `pan` varchar(150) NOT NULL,
+  `vat` int(20) NOT NULL,
   `logopic` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -92,8 +95,8 @@ CREATE TABLE `tbl_general` (
 -- Dumping data for table `tbl_general`
 --
 
-INSERT INTO `tbl_general` (`genid`, `namehotel`, `emailhotel`, `contact`, `address`, `pobox`, `logopic`) VALUES
-(32, 'Hotel Royal Kusum', 'hotel@gmail.com', '98435678980', 'ktm', 'nothing', '3969.jpg');
+INSERT INTO `tbl_general` (`genid`, `namehotel`, `emailhotel`, `contact`, `site`, `address`, `pan`, `vat`, `logopic`) VALUES
+(32, 'Royal Kusum', 'kusum@royalhotel.com', '56565656', 'www.royalkusum.com.np', 'baneswor', '654789', 65, '1868.gif');
 
 -- --------------------------------------------------------
 
@@ -238,7 +241,7 @@ ALTER TABLE `tbl_user_registration`
 -- AUTO_INCREMENT for table `tbl_add_bedtype`
 --
 ALTER TABLE `tbl_add_bedtype`
-  MODIFY `bedtypeid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `bedtypeid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT for table `tbl_add_roomtype`
 --

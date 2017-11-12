@@ -99,13 +99,8 @@
 
                <nav class="navigation">
   			  <ul class="mainmenu">
-            <li><a href="">Menu Items</a>
-    
-         <ul class="submenu">
-        <li><a href="cuisinemenu.php?nme=<?php echo $usr;?>">Cuisine Menu</a></li>
-        <li><a href="">Noodles Menu</a></li>
-        <li><a href="">Non-Veg Curry Menu</a></li>
-      </ul>
+            <li><a href="cuisinemenu.php?nme=<?php echo $usr;?>">Edit Menu Items</a>
+
       </li>
 
 
@@ -126,10 +121,21 @@
              <li><a href="gensetting.php?nme=<?php echo $usr;?>" >Settings </a></li>
              </ul>
             </nav> 
-<div class= "main col-xs-9 form-style-8" style=" margin-top: 8%; margin-left: 40%;  max-width: 800px; ">
+<div class= "main col-xs-9 form-style-8" style=" margin-top: 8%; margin-left: 35%;  max-width: 850px; ">
 
-		<form method="post" action="dbroom_reg.php">
+		<form method="post" action="dbroom_reg.php?nme=<?php echo $usr;?>">
 			
+ <?php 
+if (isset($_GET['msg1'])) {
+?><div style="font-size: 20px; border:1px solid black; max-width: 250px;" >
+  <?php echo "<span class='glyphicon glyphicon-ok'> </span>"." ".$_GET['msg1'] ;
+?>  </div><?php
+}
+
+
+ ?> 
+
+
 			<p>	
 			<input type="number" min=1  name="rn" autofocus placeholder="Room Number.." required/>
 </p>
@@ -173,6 +179,7 @@ echo $select;
       </p>
 
 <p>
+  Select Hotel Facilities<br>
 <?php
       $sql="SELECT * FROM tbl_hotel_facilities";
 
@@ -180,45 +187,50 @@ echo $select;
 
 $nu=$res->num_rows;
 
-$select= '<select name="select_hotelfacilities" required>';
-$select.='<option value="" disabled selected style="display: none;">'.'Choose Hotel Facilities...'.'</option>';
+
 while($data1 = $res->fetch_array()){
-      $select.='<option value="'.$data1['hotelfac_id'].'">'.$data1['facilities'].'</option>';
+   echo "<input type='checkbox' name='facil[]' value='".$data1['hotelfac_id']."'>".""
+    .$data1['facilities']."<br>";
   }
 
-$select.='</select>';
-echo $select;
+
 ?>
+
       </p>
 			
+			
 			<p>
-			<input type="text"  name="rtype" placeholder="Bed Status.."   autocomplete="on" required/>
-			</p>
-					
-
-            <p>
-      <label> AC:
-      <input type = "radio" name = "ac" value="yes" checked>Yes
-      <input type = "radio" name = "ac" value = "no">No
-      </label>
-      </p>
-
-
-			<p>
-			<input type="number"  min=1 name="numbed" placeholder=" Capacity of Beds..."   autocomplete="on" required  />
+			<input type="number"  min=0 name="maxnumbed" placeholder=" Maximum number of Beds..."   autocomplete="on" required  />
 			</p>
 			 
-
-			<p>
-			<label> Attached Bathroom:
-			<input type = "radio" name = "attb" value="yes" checked>Yes
-			<input type = "radio" name = "attb" value = "no">No
-			</label>
-			</p>
+      
+      <p>
+      <input type="number"  min=0 name="extrabed" placeholder=" Extra Bed..."   autocomplete="on" required  />
+      </p>
 			
 
+      <p>
+      <input type="number"  min=0 name="roomprice" placeholder=" Room price..."   autocomplete="on" required  />
+      </p>
+
+
+      <p>
+      <input type="number"  min=0 name="maxper" placeholder=" Maximum Person..."   autocomplete="on" required  />
+      </p>
+
+      
+      <p>
+      <input type="number"  min=0 name="extraperson" placeholder=" Extra Persons..."   autocomplete="on" required  />
+      </p>
+
+      
+      <p>
+      <input type="number"  min=0 name="maxchild" placeholder=" Maximum number of Children..."   autocomplete="on" required  />
+      </p>
+
+
 			<p>
-			<input type="submit" value="Add Room"  class="" name="btn_addroom">
+			<input type="submit" value="Add Room"  class="" name="btn_addroom" style="margin-bottom: 9%;">
 			</p>
 
 		</form>

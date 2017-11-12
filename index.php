@@ -3,6 +3,8 @@
 <head>
 <title>hotel</title>
  <link rel="stylesheet" href="bootstrap/bootstrap.min.css">
+
+   <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css" rel="stylesheet">
 <link rel ="stylesheet" type="text/css" href = "form.css" />
 <script type="text/javascript" src="JQuery.js"></script>
 <script>
@@ -56,6 +58,16 @@ window.onclick = function(event){
 
 <form method="post" action="dblogin.php" style="margin-top:5%; margin-left: 40%;">
 
+  <?php 
+if (isset($_GET['error1'])) {
+?><div style="font-size: 20px; border:1px solid black; max-width: 300px;" >
+  <?php echo "<span class='glyphicon glyphicon-remove'> </span>"." ".$_GET['error1'] ;
+?>  </div><?php
+}
+
+
+ ?>
+
 <input type="text" name ="usrnme" size = "20" placeholder="Your Username.." required/>
 
  
@@ -63,7 +75,7 @@ window.onclick = function(event){
 
 <input type="submit" value="Log In" name="btn_login"  />
 
-<p><?php if (isset($_GET['error1'])){ echo $_GET['error1'] ;} ?>  </p>
+
 </form>
 <input value="Forgot your Password?" " type="submit" style="margin-left: 35%;"  onclick="document.getElementById('id01').style.display='block'" />
 

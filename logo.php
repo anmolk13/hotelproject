@@ -62,11 +62,9 @@ if(isset($_POST['btnsave']))
 			if($stmt->execute())
 			{ ?>
 
-             <script>
-             	alert('Successfully inserted...');
-             </script>
+             
              <?php
-				header("refresh:2;gensetting.php?nme=".$usr); // redirects image view page after 5 seconds.
+				header("refresh:0;gensetting.php?nme=".$usr."&msg1=Successfully added"); // redirects image view page after 5 seconds.
 			}
 			else
 			{?>
@@ -156,7 +154,15 @@ $sql4= "select genid from tbl_general";
 	<nav class="navbar navbar-inverse navbar-fixed-top">
     <div class="container-fluid">
     <div class="navbar-header">
-    <span class="navbar-brand" href="">Logo</span>
+    <span class="navbar-brand" href="">
+    	<?php
+$sql6 = "select * from tbl_general";
+      $result6 = $con->query($sql6);
+      $data = $result6->fetch_array();
+    	?>
+    	 <img src="logo/<?php echo $data['logopic']; ?>" style="margin-bottom: 20px;" class="" width="50%" height="35px"  />
+
+    </span>
 
 <?php   
 
@@ -172,12 +178,10 @@ $sql4= "select genid from tbl_general";
     
       <?php 
 
-     $sql6 = "select namehotel from tbl_general";
-      $result6 = $con->query($sql6);
-      $data2 = $result6->fetch_array();
+     
 
        
-       echo $data2['namehotel'];
+       echo $data['namehotel'];
 
 
 
@@ -197,35 +201,13 @@ $sql4= "select genid from tbl_general";
 	</nav>
     </div>
 
-	<!-- <?php
-
-
-		if(isset($errMSG)){
-				?>
-            	<div class="alert alert-danger">
-            	<span class="glyphicon glyphicon-info-sign"></span> <strong><?php echo $errMSG; ?></strong>
-                </div>
-    <?php
-		}
-	else if(isset($successMSG)){
-		?>
-        <div class="alert alert-success">
-              <strong><span class="glyphicon glyphicon-info-sign"></span> <?php echo $successMSG; ?></strong>
-        </div>
-        <?php
-	}
-	?>    -->
+	
 
     <nav class="navigation">
   			  <ul class="mainmenu">
 
-              <li><a href="">Menu Items</a>
+              <li><a href="cuisinemenu.php?nme=<?php echo $usr;?>">Edit Menu Items</a>
     
-         <ul class="submenu">
-        <li><a href="cuisinemenu.php?nme=<?php echo $usr;?>">Cuisine Menu</a></li>
-        <li><a href="">Noodles Menu</a></li>
-        <li><a href="">Non-Veg Curry Menu</a></li>
-      </ul>
       </li>
 
               
@@ -236,8 +218,9 @@ $sql4= "select genid from tbl_general";
               <li><a href="">Booked Room</a></li>
               <li><a href="">Checked In</a></li>
               <li><a href="">Checked Out</a></li>
-              <li><a href="">Room Details</a></li>
-             </ul>
+              <li><a href="hfacilities.php?nme=<?php echo $usr;?>">Hotel Facilities</a></li>
+
+                           </ul>
              </li>
              <li><a href="">View orders</a></li>
              <li><a href="">Contact us </a></li>
@@ -255,7 +238,7 @@ $sql4= "select genid from tbl_general";
     
     <p>
     <label>Hotel Logo</label>
-    <input class="input-group" type="file" name="img_logo" accept="image/*"  />
+    <input class="input-group" type="file" name="img_logo" accept="image/*"  required />
     </p>
     
     <p>
