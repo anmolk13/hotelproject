@@ -192,7 +192,7 @@ $sql6 = "select * from tbl_general";
    	<li class="dropdown">
     <a href="#" class="glyphicon glyphicon-user"> <?php echo $usr  ?></a>
     <div class="dropdown-content" style="right:0;">
-	<a href="#">Link 1</a>
+	 <a href="user_reg.php?nme=<?php echo $usr;?>">Register User</a>
 	<a href="logout.php">Log Out</a>
 	</div>	
     </li>
@@ -223,6 +223,7 @@ $sql6 = "select * from tbl_general";
                            </ul>
              </li>
              <li><a href="">View orders</a></li>
+             <li><a href="table.php?nme=<?php echo $usr;?>">Insert Table Number</a></li>
              <li><a href="">Contact us </a></li>
              <li><a href="gensetting.php?nme=<?php echo $usr;?>" >Settings </a></li>
              </ul>

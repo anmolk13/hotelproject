@@ -91,7 +91,7 @@
        	        <a href="#" class="glyphicon glyphicon-user">  <?php echo $usr ?></a>
 
        			 <div class="dropdown-content" style="right:0;">
-				    <a href="#">Link 1</a>
+				     <a href="user_reg.php?nme=<?php echo $usr;?>">Register User</a>
 				   <a href="logout.php">Log Out</a>
 				    
 				  </div>	
@@ -124,6 +124,7 @@
              </ul>
              </li>
              <li><a href="">View orders</a></li>
+             <li><a href="table.php?nme=<?php echo $usr;?>">Insert Table Number</a></li>
              <li><a href="">Contact us </a></li>
              <li><a href="gensetting.php?nme=<?php echo $usr;?>" >Settings </a></li>
              </ul>
@@ -139,10 +140,15 @@
 <h2 style="background-color: #FFF8DC;"> <span class="glyphicon glyphicon-cutlery"></span> INSERT MENU INFORMATION</h2>
 
  <?php 
-if (isset($_GET['msg1'])) {
-?><div style="font-size: 20px; border:1px solid black; max-width: 250px;" >
+if (isset($_GET['msg1'])) {?>
+
+<div style="font-size: 20px; border:1px solid black; max-width: 250px;" >
+
   <?php echo "<span class='glyphicon glyphicon-ok'> </span>"." ".$_GET['msg1'] ;
-?>  </div><?php
+   ?>  
+</div>
+
+<?php
 }
 
 
