@@ -8,9 +8,35 @@
 	<link rel="stylesheet" href="sidebar.css">
   <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css" rel="stylesheet">
 	    <script src="bootstrap/bootstrap.min.js"></script>
-	    <script src="JQuery.js"></script>
+	    <script src="JQuery.js">
 
-             <style>
+      </script>
+
+
+<script >
+  
+       
+       function roomcheck()
+{
+  var store = document.getElementById('roomc').value; 
+  var req;
+  if(window.XMLHttpRequest)
+  {
+    req = new XMLHttpRequest();
+    
+  }else req = new ActiveXObject("Microsoft.XMLHTTP");
+  req.onreadystatechange = function()
+  {
+    if(req.readyState==4)
+    {
+      document.getElementById('checkroom').innerHTML = req.responseText;
+    }
+  }
+req.open("GET", "roomchecked.php?checkrm="+store, true)
+req.send();
+} 
+
+</script>             <style>
 	
 
 
@@ -138,8 +164,10 @@ if (isset($_GET['msg1'])) {
 
 
 			<p>	
-			<input type="number" min=1  name="rn" autofocus placeholder="Room Number.." required/>
+			<input type="number" min=1  name="rn" id="roomc" onkeyup="roomcheck()" autofocus placeholder="Room Number.." required/>
 </p>
+
+<p id="checkroom"></p>
 <p>
 <?php
       $sql="SELECT * FROM tbl_add_roomtype";

@@ -3,7 +3,11 @@ include ("connect.php");
 
 
 if (isset($_POST['btn_reg']))
+
 {
+
+$usr =$_GET['nme'];
+
 $fnam = $_POST['fname'];
 $lnam = $_POST['lname'];
 $usrnm = $_POST['unme'];
@@ -61,7 +65,8 @@ if(move_uploaded_file($_FILES['cp']['tmp_name'],"cit/".$fname_new1))
 
 	 $query3 = "update tbl_user_registration set citizenship ='$fname_new1' where userid = '$insert_id2'";
     $check3 = $con->query($query3);
-   echo"successful registration";
+   
+  header("refresh:0;user_reg.php?nme=".$usr."&msg1=Successfully Inserted");
 
 
 

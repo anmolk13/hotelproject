@@ -188,9 +188,31 @@ function checkpsw()
             </nav> 
 
 <div class="main col-xs-9 form-style-8" style=" margin-top: 7%; margin-left: 17%;  max-width: 900px; ">
-<form  action="dbreg.php" method="post" autocomplete= "on" enctype="multipart/form-data">
+<form  action="dbreg.php?nme=<?php echo $usr;?>" method="post" autocomplete= "on" enctype="multipart/form-data">
 
 <h2 style="background-color: #FFF8DC;"> <span class="glyphicon glyphicon-pencil"></span> REGISTER USER HERE </h2>
+
+
+ <?php 
+if (isset($_GET['msg1'])) {?>
+
+<div style="font-size: 20px; border:1px solid black; max-width: 250px;" >
+
+  <?php echo "<span class='glyphicon glyphicon-ok'> </span>"." ".$_GET['msg1'] ;
+   ?>  
+</div>
+
+<?php
+}
+
+
+ ?> 
+
+
+
+
+
+
 
 <p>
 <input type="text" name="fname" required placeholder="First Name" autofocus ><br/>

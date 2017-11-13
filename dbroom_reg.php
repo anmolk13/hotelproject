@@ -27,11 +27,7 @@ $res=$con->query($qu);
 
 $nu=$res->num_rows;
 
-if($nu!=0){
-	echo "Already Exit Room . Failed to Add Room";
-	die();
-	
-}
+
 
 // $chk=""; 
 // $hotel=0;
