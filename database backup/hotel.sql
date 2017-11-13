@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 12, 2017 at 10:55 AM
+-- Generation Time: Nov 13, 2017 at 10:06 AM
 -- Server version: 10.1.13-MariaDB
 -- PHP Version: 5.6.20
 
@@ -37,8 +37,9 @@ CREATE TABLE `tbl_add_bedtype` (
 
 INSERT INTO `tbl_add_bedtype` (`bedtypeid`, `bedtype`) VALUES
 (2, 'deluxe'),
-(3, 'example1'),
-(4, 'example2');
+(5, 'Standard'),
+(6, 'mini'),
+(7, 'ok');
 
 -- --------------------------------------------------------
 
@@ -57,7 +58,8 @@ CREATE TABLE `tbl_add_roomtype` (
 
 INSERT INTO `tbl_add_roomtype` (`roomtypeid`, `roomtype`) VALUES
 (1, 'standard'),
-(2, 'example');
+(2, 'example'),
+(3, 'hj');
 
 -- --------------------------------------------------------
 
@@ -72,6 +74,17 @@ CREATE TABLE `tbl_foodmenu` (
   `fprice` float NOT NULL,
   `hprice` float NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `tbl_foodmenu`
+--
+
+INSERT INTO `tbl_foodmenu` (`menuid`, `item_category`, `item_name`, `fprice`, `hprice`) VALUES
+(2, 'nepali', 'veg khana set', 250, 125),
+(3, 'nepali', 'Chicken Khana Set ', 300, 150),
+(4, 'indian', 'jhk', 855, 745),
+(5, 'ugkh', 'jhbk', 85, 78),
+(6, 'chinese', 'noodles', 100, 50);
 
 -- --------------------------------------------------------
 
@@ -96,7 +109,7 @@ CREATE TABLE `tbl_general` (
 --
 
 INSERT INTO `tbl_general` (`genid`, `namehotel`, `emailhotel`, `contact`, `site`, `address`, `pan`, `vat`, `logopic`) VALUES
-(32, 'Royal Kusum', 'kusum@royalhotel.com', '56565656', 'www.royalkusum.com.np', 'baneswor', '654789', 65, '1868.gif');
+(38, 'Hotel Royal Kusum', 'spuraj@gmail.com', '542145', 'omg@g.am', 'ktm', '8745', 45, '5523.jpg');
 
 -- --------------------------------------------------------
 
@@ -115,7 +128,8 @@ CREATE TABLE `tbl_hotel_facilities` (
 
 INSERT INTO `tbl_hotel_facilities` (`hotelfac_id`, `facilities`) VALUES
 (5, 'wifi'),
-(6, 'TV');
+(6, 'TV'),
+(8, 'bathroom');
 
 -- --------------------------------------------------------
 
@@ -124,37 +138,46 @@ INSERT INTO `tbl_hotel_facilities` (`hotelfac_id`, `facilities`) VALUES
 --
 
 CREATE TABLE `tbl_room` (
-  `id_room` int(11) NOT NULL,
-  `roomno` int(200) NOT NULL,
-  `bedstatus` varchar(150) NOT NULL,
-  `capacity` int(150) NOT NULL,
-  `attach_bathrom` varchar(50) NOT NULL,
-  `ac` varchar(20) NOT NULL
+  `roomid` int(11) NOT NULL,
+  `roomno` int(150) NOT NULL,
+  `roomtypeid` int(150) NOT NULL,
+  `bedtypeid` int(150) NOT NULL,
+  `hotelfacilitiesid` varchar(150) NOT NULL,
+  `maxnumbed` int(150) NOT NULL,
+  `extrabed` int(150) NOT NULL,
+  `roomprice` float NOT NULL,
+  `maxperson` int(150) NOT NULL,
+  `extraperson` int(150) NOT NULL,
+  `maxnumchild` int(150) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `tbl_room`
 --
 
-INSERT INTO `tbl_room` (`id_room`, `roomno`, `bedstatus`, `capacity`, `attach_bathrom`, `ac`) VALUES
-(1, 101, 'Single bed 2', 2, 'yes', 'no'),
-(2, 102, 'Double bed 2', 5, 'yes', 'yes'),
-(3, 103, 'Double Bed 2', 4, 'yes', 'yes'),
-(4, 104, 'Double Bed 1 and Single Bed 1', 3, 'yes', 'no'),
-(5, 105, 'Single Bed ', 1, 'yes', 'no'),
-(6, 201, 'Single Bed 2', 4, 'yes', 'no'),
-(7, 202, 'Double Bed 2', 4, 'yes', 'yes'),
-(8, 203, 'Double Bed 2', 4, 'yes', 'yes'),
-(9, 204, 'Double Bed 2', 4, 'yes', 'no'),
-(10, 205, 'Double Bed 1 and Single Bed 1', 3, 'yes', 'no'),
-(11, 301, 'Single Bed 2', 2, 'yes', 'no'),
-(12, 302, 'Double Bed 2', 4, 'yes', 'yes'),
-(13, 303, 'Double Bed 2', 4, 'yes', 'yes'),
-(14, 304, 'Double Bed 2', 4, 'yes', 'no'),
-(15, 305, 'Double Bed 1 and Single Bed 1', 3, 'yes', 'no'),
-(16, 401, 'Double Bed 1 and Single Bed 1', 3, 'yes', 'yes'),
-(17, 402, 'Single Bed 3', 3, 'yes', 'no'),
-(18, 403, 'Single Bed 2', 2, 'yes', 'no');
+INSERT INTO `tbl_room` (`roomid`, `roomno`, `roomtypeid`, `bedtypeid`, `hotelfacilitiesid`, `maxnumbed`, `extrabed`, `roomprice`, `maxperson`, `extraperson`, `maxnumchild`) VALUES
+(14, 101, 1, 2, '5,6,7', 2, 1, 1000, 2, 1, 2),
+(15, 102, 2, 2, '5,8', 2, 1, 1500, 2, 1, 2),
+(16, 103, 1, 5, '6,8', 2, 1, 1000, 2, 1, 1),
+(17, 90, 1, 2, '5', 2, 2, 14, 2, 3, 1);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tbl_table`
+--
+
+CREATE TABLE `tbl_table` (
+  `tableid` int(11) NOT NULL,
+  `tablenum` int(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `tbl_table`
+--
+
+INSERT INTO `tbl_table` (`tableid`, `tablenum`) VALUES
+(1, 101);
 
 -- --------------------------------------------------------
 
@@ -185,7 +208,9 @@ CREATE TABLE `tbl_user_registration` (
 
 INSERT INTO `tbl_user_registration` (`userid`, `fname`, `lname`, `userpic`, `address`, `email`, `cnum`, `joindate`, `maritialstatus`, `workstatus`, `gender`, `citizenship`, `username`, `password`) VALUES
 (49, 'po', 'po', 'user_49_pic.jpg', 'po', 'po@po.com', 'po', '2017-10-13', 'Married', 'working', 'male', 'Anmol49_pict.jpg', 'pop', 'tyu'),
-(55, 'anmol', 'koirala', 'user_55_pic.jpg', 'btm', 'anmolkoirala3@mail.com', '789654123', '2017-10-21', 'Married', 'working', 'male', 'citizenship_55_pic.jpg', 'anmol', '1111');
+(55, 'anmol', 'koirala', 'user_55_pic.jpg', 'btm', 'anmolkoirala3@mail.com', '789654123', '2017-10-21', 'Married', 'working', 'male', 'citizenship_55_pic.jpg', 'anmol', '1111'),
+(56, 'anmol', 'hbjhj', 'user_56_pic.jpg', '12edsf', 'n@m.com', '45848485', '2017-11-17', 'Single', 'working', 'male', 'citizenship_56_pic.jpg', 'anmol', 'anm'),
+(57, 'suraz', 'hero', 'user_57_pic.jpg', 'lailitpur', 'suaz@gmail.com', '98975645645', '2017-11-10', 'Single', 'working', 'male', 'citizenship_57_pic.jpg', 'suraz', 'suraz');
 
 --
 -- Indexes for dumped tables
@@ -225,7 +250,13 @@ ALTER TABLE `tbl_hotel_facilities`
 -- Indexes for table `tbl_room`
 --
 ALTER TABLE `tbl_room`
-  ADD PRIMARY KEY (`id_room`);
+  ADD PRIMARY KEY (`roomid`);
+
+--
+-- Indexes for table `tbl_table`
+--
+ALTER TABLE `tbl_table`
+  ADD PRIMARY KEY (`tableid`);
 
 --
 -- Indexes for table `tbl_user_registration`
@@ -241,37 +272,42 @@ ALTER TABLE `tbl_user_registration`
 -- AUTO_INCREMENT for table `tbl_add_bedtype`
 --
 ALTER TABLE `tbl_add_bedtype`
-  MODIFY `bedtypeid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `bedtypeid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 --
 -- AUTO_INCREMENT for table `tbl_add_roomtype`
 --
 ALTER TABLE `tbl_add_roomtype`
-  MODIFY `roomtypeid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `roomtypeid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT for table `tbl_foodmenu`
 --
 ALTER TABLE `tbl_foodmenu`
-  MODIFY `menuid` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `menuid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 --
 -- AUTO_INCREMENT for table `tbl_general`
 --
 ALTER TABLE `tbl_general`
-  MODIFY `genid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
+  MODIFY `genid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
 --
 -- AUTO_INCREMENT for table `tbl_hotel_facilities`
 --
 ALTER TABLE `tbl_hotel_facilities`
-  MODIFY `hotelfac_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `hotelfac_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 --
 -- AUTO_INCREMENT for table `tbl_room`
 --
 ALTER TABLE `tbl_room`
-  MODIFY `id_room` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `roomid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+--
+-- AUTO_INCREMENT for table `tbl_table`
+--
+ALTER TABLE `tbl_table`
+  MODIFY `tableid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `tbl_user_registration`
 --
 ALTER TABLE `tbl_user_registration`
-  MODIFY `userid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=56;
+  MODIFY `userid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=58;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
