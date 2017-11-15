@@ -246,6 +246,7 @@ if ($ress=$con->query($updatequery)){?>
     
         
       </li>
+                <li><a href="drinkmenu.php?nme=<?php echo $usr;?>">Drinks Menu </a></li>
 
               <li><a href="">Room</a>
               <ul class="submenu">

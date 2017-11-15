@@ -7,6 +7,7 @@
 	  <script src="bootstrap/bootstrap.min.js"></script>
 <script type="text/javascript" src="JQuery.js"></script>
             <link rel ="stylesheet" type="text/css" href = "form.css" />
+
 	       <link rel="stylesheet" href="sidebar.css">
 
 
@@ -147,7 +148,7 @@ document.getElementById("btn1").style.display = 'none';
               <li><a href="cuisinemenu.php?nme=<?php echo $usr;?>">Edit Menu Items</a>
 
       </li>
-
+              <li><a href="drinkmenu.php?nme=<?php echo $usr;?>">Drinks Menu </a></li>
 
 
 

@@ -107,7 +107,7 @@
     
   
       </li>
-
+                      <li><a href="drinkmenu.php?nme=<?php echo $usr;?>">Drinks Menu </a></li>
 
 
 

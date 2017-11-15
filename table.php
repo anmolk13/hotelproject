@@ -120,6 +120,7 @@ $con->query($r);
   <ul class="mainmenu">
     <li><a href="cuisinemenu.php?nme=<?php echo $usr;?>">Edit Menu Items</a>
       </li>
+                <li><a href="drinkmenu.php?nme=<?php echo $usr;?>">Drinks Menu </a></li>
 
 
     <li><a href="">Room</a>

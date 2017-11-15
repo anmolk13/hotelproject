@@ -207,6 +207,7 @@ $sql6 = "select * from tbl_general";
   			  <ul class="mainmenu">
 
               <li><a href="cuisinemenu.php?nme=<?php echo $usr;?>">Edit Menu Items</a>
+              	  <li><a href="drinkmenu.php?nme=<?php echo $usr;?>">Drinks Menu </a></li>
     
       </li>
 
