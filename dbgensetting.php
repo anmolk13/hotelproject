@@ -12,5 +12,12 @@ $usr = $_GET['nme'];
 $hid=$_GET['id'];
 	 $query1="update tbl_general set emailhotel='$emailhotel',contact='$cont',address='$address',site='$site',pan='$pob',vat='$vat' where genid='$hid'";
  $con->query($query1);
-header("location:gensetting.php?nme=".$usr."&msg1=Successfully Inserted.");
+ ?>
+<script>
+             	
+             </script>
+             <?php
+header("refresh:0;gensetting.php?nme=".$usr."&msg1=Successfully Inserted.");
+
+
 ?>

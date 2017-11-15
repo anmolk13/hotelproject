@@ -1,3 +1,20 @@
+<?php
+include  "connect.php";
+
+if(isset($_GET['deletetableid']))
+  {
+      $id=$_GET['deletetableid'];
+      $usr = $_GET['nme'];
+    // it will delete an actual record from db
+    $r="DELETE FROM tbl_table WHERE tableid ='$id'";
+$con->query($r);
+    
+    header("Location: table.php?nme=".$usr);
+  }
+
+  ?>
+
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -56,7 +73,7 @@
                 <div class="navbar-header">
                   <?php  
                $usr = $_GET['nme'];
-                                         include("connect.php");
+                                        
 
               $sql = "select * from tbl_general";
 
@@ -118,6 +135,7 @@
     <li><a href="table.php?nme=<?php echo $usr;?>">Insert Table Number</a></li>
     <li><a href="">Contact us </a></li>
     <li><a href="gensetting.php?nme=<?php echo $usr;?>" >Settings </a></li>
+     <li><a href="laundry.php?nme=<?php echo $usr;?>" >Laundry Facilities </a></li>
   </ul>
 </nav>
 
@@ -128,7 +146,7 @@
 
 
 
-<div class= "main col-xs-9 form-style-8" style=" margin-top: 10%; margin-left: 40%;  max-width: 600px; ">
+<div class= "main col-xs-9 form-style-8" style=" margin-top: 10%; margin-left: 40%;  max-width: 800px; ">
 
     <form method="post" action="dbtable.php?nme=<?php echo $usr;?>">
 
@@ -157,7 +175,7 @@ if (isset($_GET['msg1'])) {?>
 
 
   <p>
-    <input type="text" name="tblnum" placeholder="Insert Table Number.. "  required />
+    <input type="text" name="tblnum" placeholder="Insert Table Number or Name.. "  required />
     </p>
     
     <p>
@@ -165,8 +183,34 @@ if (isset($_GET['msg1'])) {?>
     </p>
     
     </form>
+<div>
+<?php
+
+$s="select * from tbl_table";
+$result=$con->query($s);
+$num=$result->num_rows; // it counts the number of rows affected
+if($num>0)
+
+{
+  echo "<p style='font-size:20px ;text-decoration:underline; '>"."List of Table name/number:-</p>";
+  $n=1;
+while($data3 = $result->fetch_array()){
+  ?>
+  <p><?php
+echo $n.")  "?> <a class="btn btn-default" style="" href="?deletetableid=<?php echo $data3['tableid'];?>&nme=<?php echo $usr?>" onclick="return confirm('sure to delete ?')"><span class="glyphicon glyphicon-remove-circle"></span>Delete</a> <?php echo $data3['tablenum']."<br>";
+$n++;
+
+?>
+</p>
+<?php
+}
+
+}
+?>
+</div>
 
 </div>
+
 
 <nav class="n">
   <ul class="mainmenu">

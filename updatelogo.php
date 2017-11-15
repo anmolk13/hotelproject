@@ -260,6 +260,7 @@ if ($ress=$con->query($updatequery)){?>
               <li><a href="table.php?nme=<?php echo $usr;?>">Insert Table Number</a></li>
              <li><a href="">Contact us </a></li>
              <li><a href="gensetting.php?nme=<?php echo $usr;?>" >Settings </a></li>
+              <li><a href="laundry.php?nme=<?php echo $usr;?>" >Laundry Facilities </a></li>
              </ul>
             </nav> 
 

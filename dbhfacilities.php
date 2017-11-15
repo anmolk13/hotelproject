@@ -12,6 +12,15 @@ values (NULL,'$fac')";
  
  $con ->query($sql1);
 
+
+ ?>
+ <script>
+             	
+  </script>
+  
+
+
+             <?php
 header("refresh:0;hfacilities.php?nme=".$usr."&msg1=Successfully added.");
 }
 
@@ -27,7 +36,14 @@ $sql = "insert into tbl_add_bedtype
 values (NULL,'$bedtype')";
  
  $con ->query($sql);
+ ?>
 
+
+
+ <script>
+ 
+             </script>
+             <?php
 header("refresh:0;hfacilities.php?nme=".$usr."&msg2=Successfully added.");
 }
 
@@ -41,7 +57,10 @@ $sql2 = "insert into tbl_add_roomtype
 values (NULL,'$roomtype')";
  
  $con ->query($sql2);
-
+ ?>
+ <script>
+             	             </script>
+             <?php
 header("refresh:0;hfacilities.php?nme=".$usr."&msg3=Successfully added.");
 }
 
