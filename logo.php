@@ -208,8 +208,8 @@ $sql6 = "select * from tbl_general";
 
               <li><a href="cuisinemenu.php?nme=<?php echo $usr;?>">Edit Menu Items</a>
     
-      </li>
-
+      			</li>
+ <li><a href="drinkmenu.php?nme=<?php echo $usr;?>">Drinks Menu </a></li>
               
 
               <li><a href="">Room</a>
@@ -226,7 +226,6 @@ $sql6 = "select * from tbl_general";
              <li><a href="table.php?nme=<?php echo $usr;?>">Insert Table Number</a></li>
              <li><a href="">Contact us </a></li>
              <li><a href="gensetting.php?nme=<?php echo $usr;?>" >Settings </a></li>
-              <li><a href="laundry.php?nme=<?php echo $usr;?>" >Laundry Facilities </a></li>
              </ul>
             </nav> 
 

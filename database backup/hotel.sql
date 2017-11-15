@@ -1,15 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.7.4
--- https://www.phpmyadmin.net/
+-- version 4.5.1
+-- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 15, 2017 at 04:40 AM
--- Server version: 10.1.28-MariaDB
--- PHP Version: 7.1.10
+-- Generation Time: Nov 15, 2017 at 07:01 AM
+-- Server version: 10.1.16-MariaDB
+-- PHP Version: 7.0.9
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
-START TRANSACTION;
 SET time_zone = "+00:00";
 
 
@@ -60,6 +58,29 @@ CREATE TABLE `tbl_add_roomtype` (
 INSERT INTO `tbl_add_roomtype` (`roomtypeid`, `roomtype`) VALUES
 (4, 'Deluxe'),
 (5, 'Standard');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tbl_drinkmenu`
+--
+
+CREATE TABLE `tbl_drinkmenu` (
+  `drinkid` int(11) NOT NULL,
+  `drink_name` varchar(150) NOT NULL,
+  `drink_type` varchar(150) NOT NULL,
+  `drink_code` int(100) NOT NULL,
+  `fprice` float NOT NULL,
+  `hprice` float NOT NULL,
+  `qprice` float NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `tbl_drinkmenu`
+--
+
+INSERT INTO `tbl_drinkmenu` (`drinkid`, `drink_name`, `drink_type`, `drink_code`, `fprice`, `hprice`, `qprice`) VALUES
+(1, 'Vodka', 'Hard', 10, 1200, 650, 300);
 
 -- --------------------------------------------------------
 
@@ -245,6 +266,12 @@ ALTER TABLE `tbl_add_roomtype`
   ADD PRIMARY KEY (`roomtypeid`);
 
 --
+-- Indexes for table `tbl_drinkmenu`
+--
+ALTER TABLE `tbl_drinkmenu`
+  ADD PRIMARY KEY (`drinkid`);
+
+--
 -- Indexes for table `tbl_foodmenu`
 --
 ALTER TABLE `tbl_foodmenu`
@@ -295,56 +322,51 @@ ALTER TABLE `tbl_user_registration`
 --
 ALTER TABLE `tbl_add_bedtype`
   MODIFY `bedtypeid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
-
 --
 -- AUTO_INCREMENT for table `tbl_add_roomtype`
 --
 ALTER TABLE `tbl_add_roomtype`
   MODIFY `roomtypeid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
-
+--
+-- AUTO_INCREMENT for table `tbl_drinkmenu`
+--
+ALTER TABLE `tbl_drinkmenu`
+  MODIFY `drinkid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `tbl_foodmenu`
 --
 ALTER TABLE `tbl_foodmenu`
   MODIFY `menuid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
-
 --
 -- AUTO_INCREMENT for table `tbl_general`
 --
 ALTER TABLE `tbl_general`
   MODIFY `genid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
-
 --
 -- AUTO_INCREMENT for table `tbl_hotel_facilities`
 --
 ALTER TABLE `tbl_hotel_facilities`
   MODIFY `hotelfac_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
-
 --
 -- AUTO_INCREMENT for table `tbl_laundry`
 --
 ALTER TABLE `tbl_laundry`
   MODIFY `laundryid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
-
 --
 -- AUTO_INCREMENT for table `tbl_room`
 --
 ALTER TABLE `tbl_room`
   MODIFY `roomid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
-
 --
 -- AUTO_INCREMENT for table `tbl_table`
 --
 ALTER TABLE `tbl_table`
   MODIFY `tableid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
-
 --
 -- AUTO_INCREMENT for table `tbl_user_registration`
 --
 ALTER TABLE `tbl_user_registration`
   MODIFY `userid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=58;
-COMMIT;
-
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

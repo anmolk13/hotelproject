@@ -2,12 +2,37 @@
 <html>
 <head>
 	<title></title>
-<link rel="stylesheet" href="bootstrap/bootstrap.min.css">
-            <link rel ="stylesheet" type="text/css" href = "form.css" />
-  <link rel="stylesheet" href="sidebar.css">
+	<link rel="stylesheet" href="bootstrap/bootstrap.min.css">
+	<link rel="stylesheet" href="sidebar.css">
+    <link rel ="stylesheet" type="text/css" href = "form.css" />
   <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css" rel="stylesheet">
-      <script src="bootstrap/bootstrap.min.js"></script>
-      <script src="JQuery.js"></script>
+	    <script src="bootstrap/bootstrap.min.js"></script>
+	    <script src="JQuery.js"></script>
+<script >
+  <?php include("connect.php");?>
+  function showroom()
+{
+  var character =  document.getElementById('romno').value;
+  var req;
+  if(window.XMLHttpRequest)
+  {
+    req = new XMLHttpRequest();
+    
+  }
+  else req = new ActiveXObject("Microsoft.XMLHTTP");
+  req.onreadystatechange = function()
+  {
+    if(req.readyState==4)
+    {
+      document.getElementById('displayall').innerHTML = req.responseText;
+    }
+  }
+req.open("GET", "showroom.php?roomnumber="+character, true)
+req.send();
+}
+
+</script>
+
 <style>
 	
 
@@ -56,7 +81,6 @@
                 <div class="navbar-header">
                   <?php  
                $usr = $_GET['nme'];
-                                         include("connect.php");
 
               $sql = "select * from tbl_general";
 
@@ -88,7 +112,7 @@
        	<a href="#" class="glyphicon glyphicon-user"> <?php echo $usr ?></a>
 
      			 <div class="dropdown-content" style="right:0;">
-				     <a href="user_reg.php?nme=<?php echo $usr;?>">Register User</a>
+				    <a href="user_reg.php?nme=<?php echo $usr;?>">Register User</a>
 				   <a href="logout.php">Log Out</a>
 				    
 				  </div>
@@ -101,72 +125,58 @@
 
 <nav class="navigation">
   <ul class="mainmenu">
-    <li><a href="cuisinemenu.php?nme=<?php echo $usr;?>">Edit Menu Items</a>
-      </li>
- <li><a href="drinkmenu.php?nme=<?php echo $usr;?>">Drinks Menu </a></li>
+   
+
 
     <li><a href="">Room</a>
      <ul class="submenu">
-      <li><a href="room.php?nme=<?php echo $usr;?>">Register Room</a></li>
-        <li><a href="">Booked Room</a></li>
+      
+        <li><a href="bookedroom.php?nme=<?php echo $usr;?>">Booked Room</a></li>
         <li><a href="">Checked In</a></li>
         <li><a href="">Checked Out</a></li>
-        <li><a href="hfacilities.php?nme=<?php echo $usr;?>">Hotel Facilities</a></li>
+       
       </ul>
       </li>
     <li><a href="">View orders</a></li>
-    <li><a href="table.php?nme=<?php echo $usr;?>">Insert Table Number</a></li>
+    
     <li><a href="">Contact us </a></li>
-    <li><a href="gensetting.php?nme=<?php echo $usr;?>" >Settings </a></li>
+   
   </ul>
 </nav>
+<div class= "main col-xs-9 form-style-8" style=" margin-top: 7%; margin-left: 16.5%;  max-width: 900px; ">
 
-
-
-
-
-
-
-
-<div class= "main col-xs-9 form-style-8" style=" margin-top: 10%; margin-left: 40%;  max-width: 600px; ">
-
-    <form method="post" action="dbtable.php?nme=<?php echo $usr;?>">
-
- <?php 
-if (isset($_GET['msg1'])) {?>
-
-<div style="font-size: 20px; border:1px solid black; max-width: 250px;" >
-
-  <?php echo "<span class='glyphicon glyphicon-ok'> </span>"." ".$_GET['msg1'] ;
-   ?>  
-</div>
-
+<form>
+  <h2 style="background-color: #FFF8DC;">BOOKED ROOM</h2>
+<p>
 <?php
-}
+      $sql="SELECT * FROM tbl_room";
+
+      $res=$con->query($sql);
+
+$nu=$res->num_rows;
+
+$select= '<select name="select_roomnumber" id="romno" onclick="showroom()" required>';
+$select.='<option value="" disabled selected style="display: none;">'.'Choose Room Number...'.'</option>';
+while($data1 = $res->fetch_array()){
+      $select.='<option value="'.$data1['roomid'].'">'.$data1['roomno'].'</option>';
+  }
+
+$select.='</select>';
+echo $select;
+?>
+      </p>
+
+      
+
+<p id="displayall"></p>
 
 
- ?> 
-
-
-
-
-
-
-
-
-
-
-  <p>
-    <input type="text" name="tblnum" placeholder="Insert Table Number.. "  required />
-    </p>
-    
-    <p>
-    <input type="submit" name="btntbl" value="SAVE">
-    </p>
-    
-    </form>
-
+<p>
+<input type = "submit" name="btn_bookroom" value ="Booked Your Room">
+</p>
+</form>
 </div>
+
 
 <nav class="n">
   <ul class="mainmenu">

@@ -10,6 +10,31 @@
             <link rel ="stylesheet" type="text/css" href = "form.css" />
 	<link rel="stylesheet" href="sidebar.css">
 
+<script >
+  
+       
+       function drinkcode()
+{
+  var store = document.getElementById('drinkc').value; 
+  var req;
+  if(window.XMLHttpRequest)
+  {
+    req = new XMLHttpRequest();
+    
+  }else req = new ActiveXObject("Microsoft.XMLHTTP");
+  req.onreadystatechange = function()
+  {
+    if(req.readyState==4)
+    {
+      document.getElementById('checkcode').innerHTML = req.responseText;
+    }
+  }
+req.open("GET", "drinkcodechecked.php?drinkco="+store, true)
+req.send();
+} 
+
+</script> 
+
    <style>
 	
 
@@ -103,10 +128,8 @@
 
                <nav class="navigation">
   			  <ul class="mainmenu">
- 			  <li><a href="cuisinemenu.php?nme=<?php echo $usr;?>">Edit Menu Items</a></li>
-         <li><a href="drinkmenu.php?nme=<?php echo $usr;?>">Drinks Menu </a>
-  
-      </li>
+ 			  <li><a href="cuisinemenu.php?nme=<?php echo $usr;?>">Edit Menu Items</a>
+      <li><a href="drinkmenu.php?nme=<?php echo $usr;?>">Drinks Menu </a></li>
 
 
 
@@ -132,12 +155,12 @@
 
 <div class="main col-xs-9 form-style-8" style=" margin-top: 7%; margin-left: 17%;  max-width: 900px; ">
 
-<form action="dbcuisinemenu.php?nme=<?php echo $usr;?>" method="post" >
+<form action="dbdrinkmenu.php?nme=<?php echo $usr;?>" method="post" >
 
   
 
 	
-<h2 style="background-color: #FFF8DC;"> <span class="glyphicon glyphicon-cutlery"></span> INSERT MENU INFORMATION</h2>
+<h2 style="background-color: #FFF8DC;"> <span class="glyphicon glyphicon-glass"></span> INSERT DRINK MENU INFORMATION</h2>
 
  <?php 
 if (isset($_GET['msg1'])) {?>
@@ -159,14 +182,17 @@ if (isset($_GET['msg1'])) {?>
 		
 		    <div style="">	
 			<p>
-			<input type="text" name="mainfood" placeholder="Category Eg. Nepali, Indian"   autocomplete="on" required  />
+			<input type="text" name="drinknam" placeholder="Drink name EG: Vodka.."   autocomplete="on" required  />
 			</p>
 
   			<p>
-			<input type="text" placeholder="food item EG. Veg khana set.." name="fitem" required />
+			<input type="text" placeholder="Drink Type EG. Hard.." name="drinkty" autocomplete="on"required />
 			</p>
 			
-
+      <p>
+      <input type="number" min=1 name="drinkcod" id="drinkc" onkeyup="drinkcode()" placeholder="Drink Code.."   autocomplete="on" required  />
+      </p>
+    <p id="checkcode"></p>
 			<p>
 			<input type="text" name="fprice" placeholder="Full Price.."   autocomplete="on" required  />
 			</p>
@@ -175,8 +201,12 @@ if (isset($_GET['msg1'])) {?>
 			<input type="text" name="hprice" placeholder="Half Price.."   autocomplete="on" required  />
 			</p>
 
+        <p>
+      <input type="text" name="qprice" placeholder="Quarter Price.."   autocomplete="on" required  />
+      </p>
+
 			<p>
-			<input type="submit" value="Insert"  class="" name="btn_save" >
+			<input type="submit" value="Insert"  class="" name="btn_drinkmenu" style="margin-bottom: 5%;">
 			</p>
 
 
