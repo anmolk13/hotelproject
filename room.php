@@ -147,6 +147,7 @@ req.send();
              <li><a href="">Contact us </a></li>
              <li><a href="gensetting.php?nme=<?php echo $usr;?>" >Settings </a></li>
               <li><a href="laundry.php?nme=<?php echo $usr;?>" >Laundry Facilities </a></li>
+              <li><a href="plans.php?nme=<?php echo $usr;?>" >Plans </a></li>
              </ul>
             </nav> 
 <div class= "main col-xs-9 form-style-8" style=" margin-top: 8%; margin-left: 35%;  max-width: 850px; ">

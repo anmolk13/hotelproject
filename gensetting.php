@@ -167,6 +167,7 @@ document.getElementById("btn1").style.display = 'none';
              <li><a href="">Contact us </a></li>
              <li><a href="gensetting.php?nme=<?php echo $usr;?>" >Settings </a></li>
               <li><a href="laundry.php?nme=<?php echo $usr;?>" >Laundry Facilities </a></li>
+              <li><a href="plans.php?nme=<?php echo $usr;?>" >Plans </a></li>
              </ul>
             </nav> 
 	

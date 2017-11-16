@@ -1,3 +1,17 @@
+<?php
+                         include("connect.php");
+if(isset($_GET['deleteplanid']))
+  {
+      $id=$_GET['deleteplanid'];
+      $usr = $_GET['nme'];
+    // it will delete an actual record from db
+    $r="DELETE FROM tbl_plan WHERE planid ='$id'";
+$con->query($r);
+    
+    header("Location:plans.php?nme=".$usr);
+  }
+
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -84,8 +98,7 @@ req.send();
                   <?php 
                $usr = $_GET['nme'];
 
-                                    		 include("connect.php");
-
+                                    		
 							$sql = "select * from tbl_general";
 
 							$result = $con->query($sql);
@@ -151,6 +164,7 @@ req.send();
              <li><a href="">Contact us </a></li>
              <li><a href="gensetting.php?nme=<?php echo $usr;?>" >Settings </a></li>
                           <li><a href="laundry.php?nme=<?php echo $usr;?>" >Laundry Facilities </a></li>
+                          <li><a href="plans.php?nme=<?php echo $usr;?>" >Plans </a></li>
              </ul>
             </nav> 
 
