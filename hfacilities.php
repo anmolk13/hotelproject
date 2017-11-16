@@ -12,16 +12,6 @@ $con->query($r);
   }
 
 
-if(isset($_GET['deletebedid']))
-  {
-      $id=$_GET['deletebedid'];
-      $usrr = $_GET['nme'];
-    // it will delete an actual record from db
-    $r="DELETE FROM tbl_add_bedtype WHERE bedtypeid ='$id'";
-$con->query($r);
-    
-    header("Location: hfacilities.php?nme=".$usrr);
-  }
 
 if(isset($_GET['deleteroomid']))
   {
@@ -234,68 +224,6 @@ $n++;
 </div>
 
 
-<div class="main col-xs-9 form-style-8" style=" margin-top: 5%; margin-left: 16.5%;  max-width: 900px; ">
-
-<form action="dbhfacilities.php?nme=<?php echo $usr;?>" method="post" >
-
-	
-<h2 style="background-color: #FFF8DC;">  Add Bed Types</h2>
-
- <?php 
-if (isset($_GET['msg2'])) {
-?><div style="font-size: 20px; border:1px solid black; max-width: 250px;" >
-  <?php echo "<span class='glyphicon glyphicon-ok'> </span>"." ".$_GET['msg2'] ;
-?>  </div><?php
-}
-
-
- ?> 
-
-
-<div>
-<?php
-
-$s="select * from tbl_add_bedtype";
-$result=$con->query($s);
-$num=$result->num_rows; // it counts the number of rows affected
-if($num>0)
-
-{
-  echo "List of All Bed Types -<br>";
-  $n=1;
-while($data2 = $result->fetch_array()){
-  ?> <p><?php
-echo $n.")  " ?> <a class="btn btn-default" href="?deletebedid=<?php echo $data2['bedtypeid'];?>&nme=<?php echo $usr?>" onclick="return confirm('sure to delete ?')"><span class="glyphicon glyphicon-remove-circle"></span>Delete</a>
-
-<?php echo $data2['bedtype'];?><?php 
-$n++;
-?></p><?php
-}
-
-}
-?>
-</div>
-
-	<hr>
-			
-			
-					
-			<p>
-			<input type="text" name="btype" placeholder="Eg: deluxe etc"   autocomplete="on" required  />
-		    </p>
-			
-			<p>
-			<input type="submit" value="Save"  class="" name="btn_btype">
-			</p>
-
-
-
-
-
-
-</form>
-
-</div>
 
 
 <div class="main col-xs-9 form-style-8" style=" margin-top: 5%; margin-bottom: 7%; margin-left: 16.5%;  max-width: 900px; ">
