@@ -188,25 +188,21 @@ echo $select;
 ?>
 			</p>
 
+<p>
+  <input type="number" min=1  name="single"  autofocus placeholder="Single Bed Quantity.." />
+</p>
 
 <p>
-<?php
-      $sql="SELECT * FROM tbl_add_bedtype";
+  <input type="number" min=1  name="double"  autofocus placeholder="Double Bed Quantity.." />
+</p>
 
-      $res=$con->query($sql);
+<p>
+  <input type="number" min=1  name="king"  autofocus placeholder="King Bed Quantity.." />
+</p>
 
-$nu=$res->num_rows;
-
-$select= '<select name="select_bedtype" required>';
-$select.='<option value="" disabled selected style="display: none;">'.'Choose Bed Type...'.'</option>';
-while($data1 = $res->fetch_array()){
-      $select.='<option value="'.$data1['bedtypeid'].'">'.$data1['bedtype'].'</option>';
-  }
-
-$select.='</select>';
-echo $select;
-?>
-      </p>
+<p>
+  <input type="number" min=1  name="twins"  autofocus placeholder="Twins Bed Quantity.." />
+</p>
 
 <p>
   Select Hotel Facilities<br>
@@ -235,7 +231,7 @@ while($data1 = $res->fetch_array()){
 			 
       
       <p>
-      <input type="number"  min=0 name="extrabed" placeholder=" Extra Bed..."   autocomplete="on" required  />
+      <input type="number"  min=0 name="extrabed" placeholder=" Extra Bed..."   autocomplete="on"   />
       </p>
 			
 
@@ -245,17 +241,17 @@ while($data1 = $res->fetch_array()){
 
 
       <p>
-      <input type="number"  min=0 name="maxper" placeholder=" Maximum Person..."   autocomplete="on" required  />
+      <input type="number"  min=0 name="maxper" placeholder=" Maximum Person..."   autocomplete="on"   />
       </p>
 
       
       <p>
-      <input type="number"  min=0 name="extraperson" placeholder=" Extra Persons..."   autocomplete="on" required  />
+      <input type="number"  min=0 name="extraperson" placeholder=" Extra Persons..."   autocomplete="on"   />
       </p>
 
       
       <p>
-      <input type="number"  min=0 name="maxchild" placeholder=" Maximum number of Children..."   autocomplete="on" required  />
+      <input type="number"  min=0 name="maxchild" placeholder=" Maximum number of Children..."   autocomplete="on"   />
       </p>
 
 

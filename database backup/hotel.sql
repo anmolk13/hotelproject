@@ -1,15 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.7.4
--- https://www.phpmyadmin.net/
+-- version 4.5.1
+-- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 15, 2017 at 04:40 AM
--- Server version: 10.1.28-MariaDB
--- PHP Version: 7.1.10
+-- Generation Time: Nov 16, 2017 at 04:20 AM
+-- Server version: 10.1.16-MariaDB
+-- PHP Version: 7.0.9
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
-START TRANSACTION;
 SET time_zone = "+00:00";
 
 
@@ -21,26 +19,6 @@ SET time_zone = "+00:00";
 --
 -- Database: `hotel`
 --
-
--- --------------------------------------------------------
-
---
--- Table structure for table `tbl_add_bedtype`
---
-
-CREATE TABLE `tbl_add_bedtype` (
-  `bedtypeid` int(11) NOT NULL,
-  `bedtype` varchar(150) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `tbl_add_bedtype`
---
-
-INSERT INTO `tbl_add_bedtype` (`bedtypeid`, `bedtype`) VALUES
-(9, 'Single'),
-(10, 'Double'),
-(11, 'Queen');
 
 -- --------------------------------------------------------
 
@@ -60,6 +38,29 @@ CREATE TABLE `tbl_add_roomtype` (
 INSERT INTO `tbl_add_roomtype` (`roomtypeid`, `roomtype`) VALUES
 (4, 'Deluxe'),
 (5, 'Standard');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tbl_drinkmenu`
+--
+
+CREATE TABLE `tbl_drinkmenu` (
+  `drinkid` int(11) NOT NULL,
+  `drink_name` varchar(150) NOT NULL,
+  `drink_type` varchar(150) NOT NULL,
+  `drink_code` int(100) NOT NULL,
+  `fprice` float NOT NULL,
+  `hprice` float NOT NULL,
+  `qprice` float NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `tbl_drinkmenu`
+--
+
+INSERT INTO `tbl_drinkmenu` (`drinkid`, `drink_name`, `drink_type`, `drink_code`, `fprice`, `hprice`, `qprice`) VALUES
+(1, 'Vodka', 'Hard', 10, 1200, 650, 300);
 
 -- --------------------------------------------------------
 
@@ -111,7 +112,7 @@ CREATE TABLE `tbl_general` (
 --
 
 INSERT INTO `tbl_general` (`genid`, `namehotel`, `emailhotel`, `contact`, `site`, `address`, `pan`, `vat`, `logopic`) VALUES
-(38, 'HOTEL MANAGEMENT SYSTEM', 'admin@admin.cm', 'adlkfjl', 'alsdkjfl', 'lakdjlfkasj', 'lkajdlf', 0, '1101.png');
+(38, 'HOTEL MANAGEMENT SYSTEM', 'admin@admin.cm', 'adlkfjl', 'alsdkjfl', 'lakdjlfkasj', 'lkajdlf', 0, '7594.png');
 
 -- --------------------------------------------------------
 
@@ -146,6 +147,14 @@ CREATE TABLE `tbl_laundry` (
   `price` float NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `tbl_laundry`
+--
+
+INSERT INTO `tbl_laundry` (`laundryid`, `items`, `price`) VALUES
+(9, 'short', 1),
+(10, 'pant', 1000);
+
 -- --------------------------------------------------------
 
 --
@@ -156,7 +165,10 @@ CREATE TABLE `tbl_room` (
   `roomid` int(11) NOT NULL,
   `roomno` int(150) NOT NULL,
   `roomtypeid` int(150) NOT NULL,
-  `bedtypeid` int(150) NOT NULL,
+  `singlebed` int(150) NOT NULL,
+  `doublebed` int(100) NOT NULL,
+  `kingbed` int(100) NOT NULL,
+  `twinsbed` int(100) NOT NULL,
   `hotelfacilitiesid` varchar(150) NOT NULL,
   `maxnumbed` int(150) NOT NULL,
   `extrabed` int(150) NOT NULL,
@@ -170,11 +182,9 @@ CREATE TABLE `tbl_room` (
 -- Dumping data for table `tbl_room`
 --
 
-INSERT INTO `tbl_room` (`roomid`, `roomno`, `roomtypeid`, `bedtypeid`, `hotelfacilitiesid`, `maxnumbed`, `extrabed`, `roomprice`, `maxperson`, `extraperson`, `maxnumchild`) VALUES
-(14, 101, 1, 2, '5,6,7', 2, 1, 1000, 2, 1, 2),
-(15, 102, 2, 2, '5,8', 2, 1, 1500, 2, 1, 2),
-(16, 103, 1, 5, '6,8', 2, 1, 1000, 2, 1, 1),
-(17, 90, 1, 2, '5', 2, 2, 14, 2, 3, 1);
+INSERT INTO `tbl_room` (`roomid`, `roomno`, `roomtypeid`, `singlebed`, `doublebed`, `kingbed`, `twinsbed`, `hotelfacilitiesid`, `maxnumbed`, `extrabed`, `roomprice`, `maxperson`, `extraperson`, `maxnumchild`) VALUES
+(18, 101, 4, 9, 1, 0, 0, '18,19', 2, 1, 8798, 1, 1, 1),
+(19, 102, 4, 1, 0, 1, 0, '18,19,20', 2, 1, 1700, 1, 1, 1);
 
 -- --------------------------------------------------------
 
@@ -193,7 +203,8 @@ CREATE TABLE `tbl_table` (
 
 INSERT INTO `tbl_table` (`tableid`, `tablenum`) VALUES
 (7, 'table 1'),
-(9, 'table 3');
+(9, 'table 3'),
+(10, '1');
 
 -- --------------------------------------------------------
 
@@ -233,16 +244,16 @@ INSERT INTO `tbl_user_registration` (`userid`, `fname`, `lname`, `userpic`, `add
 --
 
 --
--- Indexes for table `tbl_add_bedtype`
---
-ALTER TABLE `tbl_add_bedtype`
-  ADD PRIMARY KEY (`bedtypeid`);
-
---
 -- Indexes for table `tbl_add_roomtype`
 --
 ALTER TABLE `tbl_add_roomtype`
   ADD PRIMARY KEY (`roomtypeid`);
+
+--
+-- Indexes for table `tbl_drinkmenu`
+--
+ALTER TABLE `tbl_drinkmenu`
+  ADD PRIMARY KEY (`drinkid`);
 
 --
 -- Indexes for table `tbl_foodmenu`
@@ -291,60 +302,50 @@ ALTER TABLE `tbl_user_registration`
 --
 
 --
--- AUTO_INCREMENT for table `tbl_add_bedtype`
---
-ALTER TABLE `tbl_add_bedtype`
-  MODIFY `bedtypeid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
-
---
 -- AUTO_INCREMENT for table `tbl_add_roomtype`
 --
 ALTER TABLE `tbl_add_roomtype`
   MODIFY `roomtypeid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
-
+--
+-- AUTO_INCREMENT for table `tbl_drinkmenu`
+--
+ALTER TABLE `tbl_drinkmenu`
+  MODIFY `drinkid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `tbl_foodmenu`
 --
 ALTER TABLE `tbl_foodmenu`
   MODIFY `menuid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
-
 --
 -- AUTO_INCREMENT for table `tbl_general`
 --
 ALTER TABLE `tbl_general`
   MODIFY `genid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
-
 --
 -- AUTO_INCREMENT for table `tbl_hotel_facilities`
 --
 ALTER TABLE `tbl_hotel_facilities`
   MODIFY `hotelfac_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
-
 --
 -- AUTO_INCREMENT for table `tbl_laundry`
 --
 ALTER TABLE `tbl_laundry`
-  MODIFY `laundryid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
-
+  MODIFY `laundryid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 --
 -- AUTO_INCREMENT for table `tbl_room`
 --
 ALTER TABLE `tbl_room`
-  MODIFY `roomid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
-
+  MODIFY `roomid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 --
 -- AUTO_INCREMENT for table `tbl_table`
 --
 ALTER TABLE `tbl_table`
-  MODIFY `tableid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
-
+  MODIFY `tableid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 --
 -- AUTO_INCREMENT for table `tbl_user_registration`
 --
 ALTER TABLE `tbl_user_registration`
   MODIFY `userid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=58;
-COMMIT;
-
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
