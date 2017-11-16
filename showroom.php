@@ -46,12 +46,11 @@ echo "<span style='margin-left:80px;'>"."$cou".") ".$data4['facilities']."</span
 $cou=$cou+1;	
 }
  
-     echo "Maximum Number Bed : ".$data5['maxnumbed']."<br>";
-     echo "Extra Bed : ".$data5['extrabed']."<br>";
-     echo "Room Price : Rs ".$data5['roomprice']."<br>";
+
+     echo "Room Price : Rs. ".$data5['roomprice']."<br>";
 	echo "Maximum Person : ".$data5['maxperson']."<br>";
-	echo "Extra Person : ".$data5['extraperson']."<br>";
-	echo "Maximum Number Children : ".$data5['maxnumchild']."<br>";
+	echo "Extra Person Charge : Rs. ".$data5['extrapersoncharge']."<br>";
+	echo "Maximum Children Charge : Rs. ".$data5['maxnumchildcharge']."<br>";
 
   }
 

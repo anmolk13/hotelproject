@@ -18,8 +18,6 @@ $hotel_fac =$_POST['facil'];
 $hotel=implode(",", $hotel_fac);
 
 
-$maxnobed =$_POST['maxnumbed'];
-$extrabed =$_POST['extrabed'];
 $rprice =$_POST['roomprice'];
 $maxperson =$_POST['maxper'];
 $extraper =$_POST['extraperson'];
@@ -42,7 +40,7 @@ $nu=$res->num_rows;
 // echo $chk;
 
 
-	$quer="insert into tbl_room (roomno,roomtypeid,singlebed,doublebed,kingbed,twinsbed,hotelfacilitiesid,maxnumbed,extrabed,roomprice,maxperson,extraperson,maxnumchild) values('$roomno','$room_type','$sin','$dou','$kin','$tw','$hotel','$maxnobed','$extrabed','$rprice','$maxperson','$extraper','$maxchildern')";
+	$quer="insert into tbl_room (roomno,roomtypeid,singlebed,doublebed,kingbed,twinsbed,hotelfacilitiesid,roomprice,maxperson,extrapersoncharge,maxnumchildcharge) values('$roomno','$room_type','$sin','$dou','$kin','$tw','$hotel','$rprice','$maxperson','$extraper','$maxchildern')";
 $con->query($quer);
 header("refresh:0;room.php?nme=".$usr."&msg1=Successfully Inserted");
 
