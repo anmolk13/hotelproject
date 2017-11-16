@@ -147,7 +147,7 @@ req.send();
              <li><a href="">Contact us </a></li>
              <li><a href="gensetting.php?nme=<?php echo $usr;?>" >Settings </a></li>
               <li><a href="laundry.php?nme=<?php echo $usr;?>" >Laundry Facilities </a></li>
-              <li><a href="plans.php?nme=<?php echo $usr;?>" >Plans </a></li>
+                                        <li><a href="plans.php?nme=<?php echo $usr;?>" >Plans </a></li>
              </ul>
             </nav> 
 <div class= "main col-xs-9 form-style-8" style=" margin-top: 8%; margin-left: 35%;  max-width: 850px; ">
@@ -198,7 +198,7 @@ echo $select;
 </p>
 
 <p>
-  <input type="number" min=1  name="king"  autofocus placeholder="King Bed Quantity.." />
+  <input type="number" min=1  name="king"  autofocus placeholder="King Size Bed Quantity.." />
 </p>
 
 <p>
@@ -226,15 +226,8 @@ while($data1 = $res->fetch_array()){
       </p>
 			
 			
-			<p>
-			<input type="number"  min=0 name="maxnumbed" placeholder=" Maximum number of Beds..."   autocomplete="on" required  />
-			</p>
-			 
-      
-      <p>
-      <input type="number"  min=0 name="extrabed" placeholder=" Extra Bed..."   autocomplete="on"   />
-      </p>
-			
+		
+		
 
       <p>
       <input type="number"  min=0 name="roomprice" placeholder=" Room price..."   autocomplete="on" required  />
@@ -247,12 +240,12 @@ while($data1 = $res->fetch_array()){
 
       
       <p>
-      <input type="number"  min=0 name="extraperson" placeholder=" Extra Persons..."   autocomplete="on"   />
+      <input type="text"  min=0 name="extraperson" placeholder=" Extra Persons Charge..."   autocomplete="on"   />
       </p>
 
       
       <p>
-      <input type="number"  min=0 name="maxchild" placeholder=" Maximum number of Children..."   autocomplete="on"   />
+      <input type="text"  min=0 name="maxchild" placeholder=" Extra Children Charge..."   autocomplete="on"   />
       </p>
 
 

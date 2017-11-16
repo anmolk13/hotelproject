@@ -219,7 +219,7 @@ $num=$result->num_rows; // it counts the number of rows affected
 if($num>0)
 
 {
-  echo "<p style='font-size:20px ;text-decoration:underline; '>"."List of All laundry items and its price -"."</p>";
+  echo "<p style='font-size:20px ;text-decoration:underline; '>"."List of All Food's items and its price -"."</p>";
   $n=1;
  ?>
   <table  border="1"; width="400"; style="text-align: center; margin-bottom: 10%;" >

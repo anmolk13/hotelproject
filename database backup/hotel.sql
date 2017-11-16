@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 16, 2017 at 04:20 AM
+-- Generation Time: Nov 16, 2017 at 04:53 PM
 -- Server version: 10.1.16-MariaDB
 -- PHP Version: 7.0.9
 
@@ -158,6 +158,30 @@ INSERT INTO `tbl_laundry` (`laundryid`, `items`, `price`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `tbl_plan`
+--
+
+CREATE TABLE `tbl_plan` (
+  `planid` int(5) NOT NULL,
+  `plancode` varchar(255) NOT NULL,
+  `planname` varchar(255) NOT NULL,
+  `plandetail` varchar(255) NOT NULL,
+  `planprice` float NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `tbl_plan`
+--
+
+INSERT INTO `tbl_plan` (`planid`, `plancode`, `planname`, `plandetail`, `planprice`) VALUES
+(5, 'AP', 'American plan', 'It Include Bed, Breakfast, Lunch & Dinner', 600),
+(6, 'B&B', 'Bed and Breakfast Plan', 'It Include Bed along with Breakfast', 200),
+(7, 'CP', 'Continental Plan', 'It Include Bed Along with Continental B/f', 250),
+(8, 'MAP', 'Modern American Plan', 'It Includes Bed, Breakfast, Lunch/Dinner', 450);
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `tbl_room`
 --
 
@@ -170,21 +194,20 @@ CREATE TABLE `tbl_room` (
   `kingbed` int(100) NOT NULL,
   `twinsbed` int(100) NOT NULL,
   `hotelfacilitiesid` varchar(150) NOT NULL,
-  `maxnumbed` int(150) NOT NULL,
-  `extrabed` int(150) NOT NULL,
   `roomprice` float NOT NULL,
   `maxperson` int(150) NOT NULL,
-  `extraperson` int(150) NOT NULL,
-  `maxnumchild` int(150) NOT NULL
+  `extrapersoncharge` float NOT NULL,
+  `maxnumchildcharge` float NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `tbl_room`
 --
 
-INSERT INTO `tbl_room` (`roomid`, `roomno`, `roomtypeid`, `singlebed`, `doublebed`, `kingbed`, `twinsbed`, `hotelfacilitiesid`, `maxnumbed`, `extrabed`, `roomprice`, `maxperson`, `extraperson`, `maxnumchild`) VALUES
-(18, 101, 4, 9, 1, 0, 0, '18,19', 2, 1, 8798, 1, 1, 1),
-(19, 102, 4, 1, 0, 1, 0, '18,19,20', 2, 1, 1700, 1, 1, 1);
+INSERT INTO `tbl_room` (`roomid`, `roomno`, `roomtypeid`, `singlebed`, `doublebed`, `kingbed`, `twinsbed`, `hotelfacilitiesid`, `roomprice`, `maxperson`, `extrapersoncharge`, `maxnumchildcharge`) VALUES
+(18, 101, 4, 9, 1, 0, 0, '18,19', 8798, 1, 1, 1),
+(19, 102, 4, 1, 0, 1, 0, '18,19,20', 1700, 1, 1, 1),
+(20, 4, 5, 1, 1, 0, 0, '18', 67, 800, 2000, 1000);
 
 -- --------------------------------------------------------
 
@@ -280,6 +303,12 @@ ALTER TABLE `tbl_laundry`
   ADD PRIMARY KEY (`laundryid`);
 
 --
+-- Indexes for table `tbl_plan`
+--
+ALTER TABLE `tbl_plan`
+  ADD PRIMARY KEY (`planid`);
+
+--
 -- Indexes for table `tbl_room`
 --
 ALTER TABLE `tbl_room`
@@ -332,10 +361,15 @@ ALTER TABLE `tbl_hotel_facilities`
 ALTER TABLE `tbl_laundry`
   MODIFY `laundryid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 --
+-- AUTO_INCREMENT for table `tbl_plan`
+--
+ALTER TABLE `tbl_plan`
+  MODIFY `planid` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+--
 -- AUTO_INCREMENT for table `tbl_room`
 --
 ALTER TABLE `tbl_room`
-  MODIFY `roomid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `roomid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 --
 -- AUTO_INCREMENT for table `tbl_table`
 --
