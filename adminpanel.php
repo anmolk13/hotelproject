@@ -69,14 +69,14 @@
                        <img src="logo/<?php echo $data['logopic']; ?>" style="margin-bottom: 20px;" class="" width="50%" height="35px"  />
 
                     </span>
-                    <span class="navbar-brand" href="admin.php?nme=<?php echo $usr;?>">
+                    <a class="navbar-brand" href="adminpanel.php?nme=<?php echo $usr;?>">
                       <?php 
 
 
 							echo $data['namehotel'];
 
              			 ?>
-                    </span>
+                    </a>
                 </div>
                
 
